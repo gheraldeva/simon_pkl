@@ -12,7 +12,8 @@ export default {
         'right-linear' : '#2995F3',
         'card-color' : '#1B1D2A',
         'hr-color' : '#262837',
-        'bgcolor' : '#EAEAEA'
+        'bgcolor' : '#EAEAEA',
+        'gray-figma' : '#F8F8F8'
       },
       spacing : {
         '18' : '4.5rem'
