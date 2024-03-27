@@ -16,7 +16,8 @@ export default {
         'gray-figma' : '#F8F8F8'
       },
       spacing : {
-        '18' : '4.5rem'
+        '18' : '4.5rem',
+        '92' : '22rem'
       }
     },
   },

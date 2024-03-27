@@ -1,10 +1,14 @@
+<script setup>
+import { RouterLink } from "vue-router";
+</script>
+
 <template>
   <div
     class="h-[10vh] fixed z-10 w-screen bg-gradient-to-r px-16 from-left-linear to-right-linear flex justify-between items-center">
     <div class="flex gap-8">
       <img src="../assets/logo_simon.svg" alt="" />
       <h1 class="font-Montserrat text-white text-3xl">
-        Simon<span class="font-bold">PKL</span>
+        <RouterLink to="/">Simon<span class="font-bold">PKL</span></RouterLink>
       </h1>
     </div>
     <div class="flex gap-5">

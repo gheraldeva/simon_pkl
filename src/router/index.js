@@ -15,10 +15,25 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/masterdata',
-      name: 'master',
-      component: () => import('../views/MasterView.vue')
-    }
+      path: '/datasiswa',
+      name: 'datasiswa',
+      component: () => import('../views/DataSiswaView.vue')
+    },
+    {
+      path: '/dataguru',
+      name: 'dataguru',
+      component: () => import('../views/DataGuruView.vue')
+    },
+    {
+      path: '/datadudi',
+      name: 'datadudi',
+      component: () => import('../views/DataDudiView.vue')
+    },
+    {
+      path: '/laporansiswa',
+      name: 'laporansiswa',
+      component: () => import('../views/LaporanSiswa.vue')
+    },
   ]
 })
 
