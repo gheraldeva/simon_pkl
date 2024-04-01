@@ -34,6 +34,26 @@ const router = createRouter({
       name: 'laporansiswa',
       component: () => import('../views/LaporanSiswa.vue')
     },
+    {
+      path: '/tambahdatasiswa',
+      name: 'tambahdatasiswa',
+      component: () => import('../views/TambahDataSiswa.vue')
+    },
+    {
+      path: '/tambahdataguru',
+      name: 'tambahdataguru',
+      component: () => import('../views/TambahDataGuru.vue')
+    },
+    {
+      path: '/tambahdatadudi',
+      name: 'tambahdatadudi',
+      component: () => import('../views/TambahDataDudi.vue')
+    },
+    {
+      path: '/tesdropdown',
+      name: 'tesdropdown',
+      component: () => import('../views/tesdropdown.vue')
+    },
   ]
 })
 

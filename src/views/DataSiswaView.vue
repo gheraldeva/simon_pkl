@@ -1,9 +1,8 @@
 <script setup>
 import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
-import ActionButton from "@/components/icons/ActionButton.vue";
 import Banner from "@/components/Banner.vue";
-import TambahData from "@/components/TambahData.vue";
+import ActionButton from "@/components/icons/ActionButton.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
 import TrueIcon from "@/components/icons/TrueIcon.vue";
 import FalseIcon from "@/components/icons/FalseIcon.vue";
@@ -17,7 +16,7 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
       <SideBar />
       <Banner>Data Siswa</Banner>
       <div class="tabel">
-        <div class="flex flex-col mt-52 mb-10 mx-10 ml-92 bg-white shadow-md p-24 relative">
+        <div class="flex flex-col mt-52 mb-10 mx-10 ml-80 bg-white shadow-md p-24 relative">
           <div class="-m-5">
             <div class="p-1.5 min-w-full align-middle">
               <TableNavigation>
@@ -26,7 +25,8 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
                 </template>
               </TableNavigation>
 
-              <TambahData />
+              <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full absolute right-5" tag="button"><img
+                src="../assets/+.svg" alt=""></router-link>
 
               <div class="overflow-hidden border-2 border-black">
                 <table class="min-w-full divide-y divide-black">
@@ -48,17 +48,23 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
                         Status
                       </th>
                       <th scope="col" class="py-2 px-2 font-medium">Alamat</th>
+                      <th scope="col" class="py-2 px-2 font-medium">Guru Pembimbing</th>
                       <th scope="col" class="py-2 font-medium">Act</th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-black">
-                    <tr v-for="(data,index) in siswa.data" class="divide-x-2 divide-black">
-                      <td class="px-4 font-semibold">{{ index+1 }}.</td>
-                      <td class="px-2 py-1 text-nowrap">{{data.nama}}</td>
-                      <td class="px-4 py-1">{{ data.nis}}</td>
-                      <td class="px-2 py-1 capitalize">{{data.jenis_kelamin == "laki" ? "Laki - laki" : "perempuan"}}</td>
-                      <td class="px-2 py-1">{{data.status === "pkl"}}</td>
-                      <td class="px-2 py-1">{{ data.alamat.desa }},{{ data.alamat.kecamatan }},{{ data.alamat.kabupaten }},{{ data.alamat.provinsi }}</td>
+                    <tr v-for="(data, index) in siswa.data" class="divide-x-2 divide-black">
+                      <td class="px-4 font-semibold">{{ index + 1 }}.</td>
+                      <td class="px-2 py-1 text-nowrap">{{ data.nama }}</td>
+                      <td class="px-4 py-1">{{ data.nis }}</td>
+                      <td class="px-2 py-1 capitalize">{{ data.jenis_kelamin == "laki" ? "Laki - laki" : "perempuan" }}
+                      </td>
+                      <td class="px-5 py-1" v-if="data.status == 'belum_pkl'"><TrueIcon/></td>
+                      <td class="px-5 py-1" v-else><FalseIcon/></td>
+                      <td class="px-2 py-1">{{ data.alamat.desa }},{{ data.alamat.kecamatan }},{{ data.alamat.kabupaten
+                        }},{{
+                        data.alamat.provinsi }}</td>
+                      <td class="px-4 py-1">{{ data.guru_pembimbing.nama }}</td>
                       <td class="px-4 py-1 text-end">
                         <button type="button">
                           <ActionButton />
@@ -86,8 +92,8 @@ export default {
     }
   },
   methods: {
-    setSiswa(data){
-      
+    setSiswa(data) {
+
       this.siswa = data
       console.log(this.siswa);
     }
@@ -96,7 +102,7 @@ export default {
     axios.get('http://localhost:2008/admin/findAllSiswa')
       .then((r) => this.setSiswa(r.data))
 
-    
+
   }
 }
 

@@ -25,7 +25,7 @@ import { RouterLink } from "vue-router";
           <div class="flex gap-3 cursor-pointer" @click="tooglevisibleData">
             <img src="../assets/master_data.svg" alt="" />
             <button class="flex items-center" >
-              MasterData
+              Master Data
               <ArrowRight class="absolute right-5" />
             </button>
           </div>

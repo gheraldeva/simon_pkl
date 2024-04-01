@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import ActionButton from "@/components/icons/ActionButton.vue";
 import Banner from "@/components/Banner.vue";
-import TambahData from "@/components/TambahData.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
 
 </script>
@@ -15,7 +14,7 @@ import TableNavigation from "@/components/TableNavigation.vue";
       <SideBar />
       <Banner>Data Guru Pembimbing</Banner>
       <div class="tabel">
-        <div class="flex flex-col mt-52 mb-10 mx-10 ml-92 bg-white shadow-md p-24 relative">
+        <div class="flex flex-col mt-52 mb-10 mx-10 ml-80 bg-white shadow-md p-24 relative">
           <div class="-m-5">
             <div class="p-1.5 min-w-full align-middle">
               <TableNavigation>
@@ -24,7 +23,8 @@ import TableNavigation from "@/components/TableNavigation.vue";
                 </template>
               </TableNavigation>
 
-              <TambahData />
+              <router-link to="/tambahdataguru" class="p-5 bg-[#38A3FF] rounded-full absolute right-5" tag="button"><img
+                src="../assets/+.svg" alt=""></router-link>
 
               <div class="overflow-hidden border-2 border-black">
                 <table class="min-w-full divide-y divide-black">
