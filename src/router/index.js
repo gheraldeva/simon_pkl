@@ -49,11 +49,6 @@ const router = createRouter({
       name: 'tambahdatadudi',
       component: () => import('../views/TambahDataDudi.vue')
     },
-    {
-      path: '/tesdropdown',
-      name: 'tesdropdown',
-      component: () => import('../views/tesdropdown.vue')
-    },
   ]
 })
 
