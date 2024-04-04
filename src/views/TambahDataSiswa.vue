@@ -15,87 +15,109 @@
                         </label>
                         <input type="text" id="nama"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Nama..." v-model="state.datasiswa.nama" />
-                        <div class="flex">
-                            <p v-if="this.v$.datasiswa.nama.$error">{{ this.v$.datasiswa.nama.$errors[0].$message }}</p>
-                        </div>
+                            placeholder="Masukkan Nama..." v-model="Siswastate.datasiswa.nama" />
                     </div>
+                    <p v-if="this.v$Siswa.datasiswa.nama.$error" class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.nama.$errors[0].$message }}
+                    </p>
                     <div class="my-3 flex">
                         <label for="nis"
                             class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">NIS :
                         </label>
                         <input type="number" id="nis"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan NIS..." v-model="datasiswa.nis" />
+                            placeholder="Masukkan NIS..." v-model="Siswastate.datasiswa.nis" />
                     </div>
-                    <div class="my-3 flex">
+                    <p v-if="this.v$Siswa.datasiswa.nis.$error" class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.nis.$errors[0].$message }}
+                    </p>
+                    <!-- <div class="my-3 flex">
                         <label for="agama"
                             class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Agama :
                         </label>
                         <input type="text" id="agama"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Agama..." v-model="datasiswa.agama" />
+                            placeholder="Masukkan Agama..." v-model="Siswastate.datasiswa.agama" />
                     </div>
+                    <p v-if="this.v$Siswa.datasiswa.agama.$error" class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.agama.$errors[0].$message }}
+                    </p> -->
                     <div class="my-3 flex">
                         <label for="password"
                             class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Password :
                         </label>
                         <input type="password" id="password"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Password..." v-model="datasiswa.password" />
+                            placeholder="Masukkan Password..." v-model="Siswastate.datasiswa.password" />
                     </div>
+                    <p v-if="this.v$Siswa.datasiswa.password.$error" class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.password.$errors[0].$message }}
+                    </p>
                     <div class="my-3 flex flex-row justify-between items-center">
                         <label for="jurusan_select" class="w-[21%] text-right font-semibold text-lg text-nowrap">Jurusan
                             :
                         </label>
-                        <select name="jurusan" id="jurusan_select" v-model="datasiswa.id_jurusan"
+                        <select name="jurusan" id="jurusan_select" v-model="Siswastate.datasiswa.id_jurusan"
                             @change="dataKelas(datasiswa.id_jurusan)"
                             class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                             <option value="" disabled>Pilih Jurusan</option>
-                            <option :value="jurusan" v-for="(jurusan, index) in jurusan.data" :key="index">
+                            <option :value="jurusan.id" v-for="(jurusan, index) in jurusan.data" :key="index">
                                 {{ jurusan.nama }}</option>
                         </select>
                     </div>
+                    <p v-if="this.v$Siswa.datasiswa.id_jurusan.$error" class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.id_jurusan.$errors[0].$message }}
+                    </p>
                     <div class=" my-3 flex flex-row justify-between items-center">
                         <label for="kelas_select" class="w-[21%] text-right font-semibold text-lg text-nowrap">Kelas :
                         </label>
-                        <select name="kelas" id="kelas_select" v-model="datasiswa.id_kelas"
+                        <select name="kelas" id="kelas_select" v-model="Siswastate.datasiswa.id_kelas"
                             class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                             <option value="" disabled>Pilih Kelas</option>
-                            <option :value="kelas" v-for="(kelas, index) in kelas.data" :key="index">{{ kelas.nama }}
+                            <option :value="kelas.id" v-for="(kelas, index) in kelas.data" :key="index">{{ kelas.nama }}
                             </option>
                         </select>
                     </div>
+                    <p v-if="this.v$Siswa.datasiswa.id_jurusan.$error" class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.id_jurusan.$errors[0].$message }}
+                    </p>
                     <div class="my-3 flex">
                         <label for="notelp"
                             class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">No. Telepon :
                         </label>
-                        <input type="number" id="notelp"
+                        <input type="text" id="notelp"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan No. Telepon" v-model="datasiswa.no_telepon" />
+                            placeholder="Masukkan No. Telepon" v-model="Siswastate.datasiswa.no_telepon" />
+
                     </div>
+                    <p v-if="this.v$Siswa.datasiswa.no_telepon.$error" class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.no_telepon.$errors[0].$message }}
+                    </p>
                     <div class="my-3 flex ">
                         <label for="jenis-kelamin"
-                            class="w-52 text-right my-auto pl-5 font-semibold text-lg text-nowrap">Jenis
+                            class="w-[21%] text-right my-auto pl-5 font-semibold text-lg text-nowrap">Jenis
                             Kelamin :
                         </label>
                         <div class="pl-5 flex gap-5 items-center">
                             <div class="flex items-center gap-2">
-                                <input id="jenis-kelamin" type="radio" value="laki" v-model="datasiswa.jenis_kelamin"
-                                    name="jenis-kelamin"
+                                <input id="jenis-kelamin" type="radio" value="laki"
+                                    v-model="Siswastate.datasiswa.jenis_kelamin" name="jenis-kelamin"
                                     class="w-4 h-4 text-blue-600 p-2.5 bg-gray-100 border-gray-300 ">
                                 <label for="jenis-kelamin"
                                     class=" text-lg font-semibold cursor-pointer">Laki-Laki</label>
                             </div>
                             <div class="flex items-center gap-2">
                                 <input id="jenis-kelamin-2" type="radio" value="perempuan"
-                                    v-model="datasiswa.jenis_kelamin" name="jenis-kelamin"
+                                    v-model="Siswastate.datasiswa.jenis_kelamin" name="jenis-kelamin"
                                     class="w-4 h-4 text-blue-600 p-2.5 bg-gray-100 border-gray-300 ">
                                 <label for="jenis-kelamin-2"
                                     class=" text-lg font-semibold cursor-pointer">Perempuan</label>
                             </div>
                         </div>
                     </div>
+                    <p v-if="this.v$Siswa.datasiswa.jenis_kelamin.$error" class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.jenis_kelamin.$errors[0].$message }}
+                    </p>
 
 
 
@@ -104,56 +126,68 @@
                             <label for="provinsi_select"
                                 class="w-[21%] text-right font-semibold text-lg text-nowrap">Provinsi :
                             </label>
-                            <select name="provinsi" id="provinsi_select" v-model="datasiswa.alamat.provinsi"
-                                @change="dataKabupaten(datasiswa.alamat.provinsi.id)"
+                            <select name="provinsi" id="provinsi_select" v-model="alamatState.alamat.provinsi"
+                                @change="dataKabupaten(alamatState.alamat.provinsi.id)"
                                 class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                                 <option value="" disabled>Pilih Provinsi</option>
                                 <option :value="provinsi" v-for="(provinsi, index) in provinsi.data" :key="index">
                                     {{ provinsi.nama }}</option>
                             </select>
                         </div>
+                        <p v-if="this.v$Alamat.alamat.provinsi.$error" class="pl-[25%]">
+                            {{ this.v$Alamat.alamat.provinsi.$errors[0].$message }}
+                        </p>
                         <div class="flex flex-row justify-between items-center">
                             <label for="kabupaten_select"
                                 class="mr-5 text-right w-[21%] font-semibold text-lg text-nowrap">Kabupaten :
                             </label>
-                            <select name="kabupaten" id="kabupaten_select" v-model="datasiswa.alamat.kabupaten"
-                                @change="dataKecamatan(datasiswa.alamat.kabupaten.id)"
+                            <select name="kabupaten" id="kabupaten_select" v-model="alamatState.alamat.kabupaten"
+                                @change="dataKecamatan(alamatState.alamat.kabupaten.id)"
                                 class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                                 <option value="" disabled>Pilih Kabupaten</option>
                                 <option :value="kabupaten" v-for="(kabupaten, index) in kabupaten.data" :key="index">
                                     {{ kabupaten.nama }}</option>
                             </select>
                         </div>
+                        <p v-if="this.v$Alamat.alamat.kabupaten.$error" class="pl-[25%]">
+                            {{ this.v$Alamat.alamat.kabupaten.$errors[0].$message }}
+                        </p>
                         <div class="flex flex-row justify-between items-center">
                             <label for="kecamatan_select"
                                 class="mr-5 text-right w-[21%] font-semibold text-lg text-nowrap">Kecamatan :
                             </label>
-                            <select name="kecamatan" id="kecamatan_select" v-model="datasiswa.alamat.kecamatan"
-                                @change="dataDesa(datasiswa.alamat.kecamatan.id)"
+                            <select name="kecamatan" id="kecamatan_select" v-model="alamatState.alamat.kecamatan"
+                                @change="dataDesa(alamatState.alamat.kecamatan.id)"
                                 class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                                 <option value="" disabled>Pilih Kecamatan</option>
                                 <option :value="kecamatan" v-for="(kecamatan, index) in kecamatan.data" :key="index">
                                     {{ kecamatan.nama }}</option>
                             </select>
                         </div>
+                        <p v-if="this.v$Alamat.alamat.kecamatan.$error" class="pl-[25%]">
+                            {{ this.v$Alamat.alamat.kecamatan.$errors[0].$message }}
+                        </p>
                         <div class="flex flex-row justify-between items-center">
                             <label for="desa_select"
                                 class="mr-5 text-right w-[21%] font-semibold text-lg text-nowrap">Desa :
                             </label>
-                            <select name="desa" id="desa_select" v-model="datasiswa.alamat.desa"
+                            <select name="desa" id="desa_select" v-model="alamatState.alamat.desa"
                                 class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                                 <option value="" disabled>Pilih Desa</option>
-                                <option :value="desa" v-for="(desa, index) in desa.data" :key="index">{{ desa.nama }}
+                                <option :value="desa.nama" v-for="(desa, index) in desa.data" :key="index">{{ desa.nama }}
                                 </option>
                             </select>
                         </div>
+                        <p v-if="this.v$Alamat.alamat.desa.$error" class="pl-[25%]">
+                            {{ this.v$Alamat.alamat.desa.$errors[0].$message }}
+                        </p>
                     </div>
 
                     <div class=" my-3 flex flex-row justify-between items-center">
                         <label for="kelas_select" class="w-[21%] text-right font-semibold text-lg text-nowrap">Guru
                             Pembimbing :
                         </label>
-                        <select name="kelas" id="guru_select" v-model="datasiswa.id_guru_pembimbing"
+                        <select name="kelas" id="guru_select" v-model="Siswastate.datasiswa.id_guru_pembimbing"
                             class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                             <option value="" disabled>Pilih Guru Pembimbing</option>
                             <option :value="guruPembimbing.id" v-for="(guruPembimbing, index) in guruPembimbing.data"
@@ -161,6 +195,9 @@
                             </option>
                         </select>
                     </div>
+                    <p v-if="this.v$Siswa.datasiswa.id_guru_pembimbing.$error"class="pl-[25%]">
+                        {{ this.v$Siswa.datasiswa.id_guru_pembimbing.$errors[0].$message }}
+                    </p>
                     <div class="my-3 flex">
                         <label for="detailTempat"
                             class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Detail Tempat
@@ -168,8 +205,11 @@
                         </label>
                         <input type="text" id="detailTempat"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Detail Tempat..." v-model="datasiswa.alamat.detail_tempat" />
+                            placeholder="Masukkan Detail Tempat..." v-model="alamatState.alamat.detail_tempat" />
                     </div>
+                    <p v-if="this.v$Alamat.alamat.detail_tempat.$error" class="pl-[25%]">
+                        {{ this.v$Alamat.alamat.detail_tempat.$errors[0].$message }}
+                    </p>
                     <div class="flex gap-3 absolute right-10 -bottom-10">
                         <router-link to="/datasiswa"
                             class="bg-white text-[#38A3FF] border p-2 rounded-md border-[#38A3FF] hover:bg-[#38A3FF] hover:text-white">Batalkan</router-link>
@@ -195,65 +235,81 @@ import SideBar from "@/components/SideBar.vue";
 import Banner from "@/components/Banner.vue";
 import axios from "axios";
 import useValidate from '@vuelidate/core'
-import { required, numeric, minLength, maxLength } from '@vuelidate/validators'
+import { required, numeric, minLength, maxLength, helpers } from '@vuelidate/validators'
 import { reactive, computed, toRef } from "vue";
 
 export default {
     name: "tambahdatasiswa",
     components: { Navbar, SideBar, Banner },
     setup() {
-        const state = reactive({
+        const Siswastate = reactive({
             datasiswa: {
                 nama: '',
                 nis: '',
                 jenis_kelamin: '',
-                agama: '',
+                // agama: '',
                 password: '',
                 id_jurusan: '',
                 id_kelas: '',
                 no_telepon: '',
                 id_guru_pembimbing: '',
-                alamat: {
-                    detail_tempat: '',
-                    provinsi: '',
-                    kabupaten: '',
-                    kecamatan: '',
-                    desa: '',
-                    negara: 'Indonesia'
-                }
             }
 
         })
+        const alamatState = reactive({
+            alamat: {
+                detail_tempat: '',
+                provinsi: '',
+                kabupaten: '',
+                kecamatan: '',
+                desa: '',
+                negara: 'Indonesia'
+            }
+        })
 
-        const rules = computed(() => {
+        const containNumber = (value) => value.includes(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
+        const containALphabet = (value) => value.includes('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+
+        const Siswarules = computed(() => {
             return {
                 datasiswa: {
                     nama: { required },
-                    nis: {required,numeric},
-                    jenis_kelamin: {required},
-                    agama: {required},
-                    password: {required},
-                    id_jurusan: {required},
-                    id_kelas: {required},
-                    no_telepon: {required,numeric,minLength:minLength(12),maxLength:maxLength(12)},
-                    id_guru_pembimbing: {required},
-                    alamat: {
-                        detail_tempat: {required},
-                        provinsi: {required},
-                        kabupaten: {required},
-                        kecamatan: {required},
-                        desa: {required},
-                        negara: 'Indonesia'
-                    }
+                    nis: { required, numeric },
+                    jenis_kelamin: { required },
+                    // agama: { required },
+                    password: {
+                        required,
+                        minLength: minLength(8),
+                        containNumber: helpers.withMessage('Password Harus Mengandung Angka', containNumber),
+                        containALphabet: helpers.withMessage('Password Harus Mengandung huruf', containALphabet)
+                    },
+                    id_jurusan: { required },
+                    id_kelas: { required },
+                    no_telepon: { required, numeric, minLength: minLength(12), maxLength: maxLength(12) },
+                    id_guru_pembimbing: { required },
 
                 }
             }
         })
+        const alamatRules = computed(() => {
+            return {
+                alamat: {
+                    detail_tempat: { required },
+                    provinsi: { required },
+                    kabupaten: { required },
+                    kecamatan: { required },
+                    desa: { required }
+                }
+            }
+        })
 
-        const v$ = useValidate(rules, state)
+        const v$Siswa = useValidate(Siswarules, Siswastate)
+        const v$Alamat = useValidate(alamatRules, alamatState)
         return {
-            state,
-            v$
+            Siswastate,
+            alamatState,
+            v$Siswa,
+            v$Alamat
         }
     },
     data() {
@@ -269,7 +325,7 @@ export default {
                 nama: '',
                 nis: '',
                 jenis_kelamin: '',
-                agama: '',
+                // agama: '',
                 password: '',
                 id_jurusan: '',
                 id_kelas: '',
@@ -289,13 +345,24 @@ export default {
     },
     methods: {
         simpanData() {
-            this.v$.$validate()
-            if (!this.v$.$error) {
-                // alert('sukses')
-                console.log("sukses");
+            this.v$Siswa.$validate()
+            this.v$Alamat.$validate()
+            if (!this.v$Siswa.$error) {
+                this.alamatState.alamat.provinsi = this.alamatState.alamat.provinsi.nama
+                this.alamatState.alamat.kabupaten = this.alamatState.alamat.kabupaten.nama
+                this.alamatState.alamat.kecamatan = this.alamatState.alamat.kecamatan.nama
+
+                axios({
+                    method:'post',
+                    url:'http://localhost:2008/admin/addSiswa',
+                    data:{
+                        siswa : this.Siswastate.datasiswa,
+                        alamat : this.alamatState.alamat
+                    }
+                }).then((r) => console.log(r))
+                window.location.href = '/datasiswa'
             } else {
-                // alert('error')
-                console.log(this.v$.$errors[0].$message);
+                
             }
         },
         dataProvinsi(data) {
@@ -341,7 +408,7 @@ export default {
             this.jurusan = data
         },
         dataKelas() {
-            axios.get(`http://localhost:2008/admin//findKelasFilter?id_jurusan=${this.datasiswa.id_jurusan.id}`)
+            axios.get(`http://localhost:2008/admin//findKelasFilter?id_jurusan=${this.Siswastate.datasiswa.id_jurusan}`)
                 .then((response) => this.getKelas(response.data))
         },
         getKelas(data) {

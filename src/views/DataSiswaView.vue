@@ -59,7 +59,7 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
                       <td class="px-4 py-1">{{ data.nis }}</td>
                       <td class="px-2 py-1 capitalize">{{ data.jenis_kelamin == "laki" ? "Laki - laki" : "perempuan" }}
                       </td>
-                      <td class="px-5 py-1" v-if="data.status == 'belum_pkl'"><TrueIcon/></td>
+                      <td class="px-5 py-1" v-if="data.status == 'pkl'"><TrueIcon/></td>
                       <td class="px-5 py-1" v-else><FalseIcon/></td>
                       <td class="px-2 py-1">{{ data.alamat.desa }},{{ data.alamat.kecamatan }},{{ data.alamat.kabupaten
                         }},{{
