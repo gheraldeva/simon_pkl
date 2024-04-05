@@ -46,12 +46,12 @@
                         {{ this.v$Dudi.datadudi.bidang.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex">
-                        <label for="catatan"
-                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Catatan :
+                        <label for="deskripsi"
+                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Deskripsi :
                         </label>
-                        <input type="text" id="catatan"
+                        <input type="text" id="deskripsi"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Catatan..." v-model="Dudistate.datadudi.catatan" />
+                            placeholder="Masukkan Deskripsi..." v-model="Dudistate.datadudi.deskripsi" />
                     </div>
                     <div class="my-3 flex flex-col gap-2 w-[100%] content-end">
                         <div class="flex flex-row justify-between items-center">
@@ -162,7 +162,7 @@ export default {
                 nama_instansi_perusahaan: '',
                 no_telepon: '',
                 bidang: '',
-                catatan: '',
+                deskripsi: '',
             },
         });
         const alamatState = reactive({
@@ -186,7 +186,8 @@ export default {
                         minLength: minLength(12),
                         maxLength: maxLength(12),
                     },
-                    bidang: { required }
+                    bidang: { required },
+                    deskripsi: { required }
                 },
             };
         });
@@ -217,20 +218,6 @@ export default {
             kabupaten: [],
             kecamatan: [],
             desa: [],
-            datadudi: {
-                nama_instansi_perusahaan: '',
-                no_telepon: '',
-                bidang: '',
-                catatan: '',
-                alamat: {
-                    detail_tempat: '',
-                    provinsi: '',
-                    kabupaten: '',
-                    kecamatan: '',
-                    desa: '',
-                    negara: "Indonesia",
-                },
-            },
         };
     },
     methods: {
@@ -245,32 +232,29 @@ export default {
                 this.alamatState.alamat.kecamatan =
                     this.alamatState.alamat.kecamatan.nama;
 
-                // axios({
-                //     method: "post",
-                //     url: "http://localhost:2008/admin/addDudi",
-                //     data: {
-                //         Dudi: this.Dudistate.datadudi,
-                //         alamat: this.alamatState.alamat,
-                //     },
-                // }).then((r) => console.log(r));
-                // window.location.href = "/datadudi";
-                console.log(this.alamatState.alamat.provinsi);
-
+                axios({
+                    method: "post",
+                    url: "http://localhost:2008/admin/addDudi",
+                    data: {
+                        dudi: this.Dudistate.datadudi,
+                        alamat: this.alamatState.alamat,
+                    },
+                }).then((r) => console.log(r));
+                window.location.href = "/datadudi";
             } else {
             }
         },
         dataProvinsi(data) {
             this.provinsi = data;
-            console.log(this.provinsi);
         },
         dataKabupaten(data) {
             const url =
                 "https://ibnux.github.io/data-indonesia/kabupaten/" + data + ".json";
             axios.get(url).then((response) => this.getKabupaten(response));
 
-            // this.datadudi.alamat.kabupaten = '';
-            // this.datadudi.alamat.kecamatan = '';
-            // this.datadudi.alamat.desa = '';
+            this.datadudi.alamat.kabupaten = '';
+            this.datadudi.alamat.kecamatan = '';
+            this.datadudi.alamat.desa = '';
         },
         getKabupaten(data) {
             this.kabupaten = data;
@@ -280,8 +264,8 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kecamatan/" + data + ".json";
             axios.get(url).then((response) => this.getKecamatan(response));
 
-            // this.datadudi.alamat.kecamatan = '';
-            // this.datadudi.alamat.desa = '';
+            this.datadudi.alamat.kecamatan = '';
+            this.datadudi.alamat.desa = '';
         },
         getKecamatan(data) {
             this.kecamatan = data;
@@ -291,7 +275,7 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kelurahan/" + data + ".json";
             axios.get(url).then((response) => this.getDesa(response));
 
-            // this.datadudi.alamat.desa = '';
+            this.datadudi.alamat.desa = '';
         },
         getDesa(data) {
             this.desa = data;

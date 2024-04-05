@@ -1,13 +1,3 @@
-<script setup>
-import Navbar from "@/components/Navbar.vue";
-import SideBar from "@/components/SideBar.vue";
-import ActionButton from "@/components/icons/ActionButton.vue";
-import Banner from "@/components/Banner.vue";
-import TambahData from "@/components/TambahData.vue";
-import TableNavigation from "@/components/TableNavigation.vue";
-
-</script>
-
 <template>
   <div class="bg-bgcolor overflow-x-clip">
     <Navbar />
@@ -25,7 +15,7 @@ import TableNavigation from "@/components/TableNavigation.vue";
               </TableNavigation>
 
               <router-link to="/tambahdatadudi" class="p-5 bg-[#38A3FF] rounded-full absolute right-5" tag="button"><img
-                src="../assets/+.svg" alt=""></router-link>
+                  src="../assets/+.svg" alt=""></router-link>
 
               <div class="overflow-hidden border-2 border-black">
                 <table class="min-w-full divide-y divide-black">
@@ -48,23 +38,23 @@ import TableNavigation from "@/components/TableNavigation.vue";
                         Jumlah Siswa
                       </th>
                       <th scope="col" class="py-2 px-2 font-medium">
-                        Catatan
+                        Deskripsi
                       </th>
                       <th scope="col" class="py-2 font-medium">Act</th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y divide-black">                 
-                    <tr v-for="(data,i) in dudies.data" class="divide-x-2 divide-black">
-                      <td class="px-3 font-semibold">{{ i +1 }}.</td>
-                      <td class="px-2 py-1">{{data.nama_instansi_perusahaan}}</td>
-                      <td class="px-4 py-1">{{data.no_telepon}}</td>
-                      <td class="px-4 py-1">{{data.bidang}}</td>
-                      <td class="px-4 py-1">{{data.alamat.detail_tempat}}</td>
-                      <td class="px-12 py-1">{{data.siswa.length}}</td>
-                      <td class="px-4 py-1">{{data.catatan}}</td>
+                  <tbody class="divide-y divide-black">
+                    <tr v-for="(data, i) in dudies.data" class="divide-x-2 divide-black">
+                      <td class="px-3 font-semibold">{{ i + 1 }}.</td>
+                      <td class="px-2 py-1">{{ data.nama_instansi_perusahaan }}</td>
+                      <td class="px-4 py-1">{{ data.no_telepon }}</td>
+                      <td class="px-4 py-1">{{ data.bidang }}</td>
+                      <td class="px-4 py-1">{{ data.alamat.detail_tempat }}</td>
+                      <td class="px-12 py-1">{{ data.siswa.length }}</td>
+                      <td class="px-4 py-1">{{ data.deskripsi }}</td>
                       <td class="px-4 py-1 text-end">
                         <button type="button">
-                          <ActionButton />
+                          <ActionButton :datadudi="data" />
                         </button>
                       </td>
                     </tr>
@@ -82,25 +72,32 @@ import TableNavigation from "@/components/TableNavigation.vue";
 
 <script>
 import axios from "axios";
+import Navbar from "@/components/Navbar.vue";
+import SideBar from "@/components/SideBar.vue";
+import ActionButton from "@/components/icons/ActionButton.vue";
+import Banner from "@/components/Banner.vue";
+import TambahData from "@/components/TambahData.vue";
+import TableNavigation from "@/components/TableNavigation.vue";
+
 
 export default {
+  name : 'datadudi',
+  components : {Navbar,SideBar,ActionButton,Banner,TambahData,TableNavigation},
   data() {
     return {
       dudies: []
     }
   },
   methods: {
-    setDudies(data){
-      
+    setDudies(data) {
       this.dudies = data
-      console.log(this.dudies);
     }
   },
   mounted() {
     axios.get('http://localhost:2008/admin/findAllDudi')
       .then((r) => this.setDudies(r.data))
 
-    
+
   }
 }
 
