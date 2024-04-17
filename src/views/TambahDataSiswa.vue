@@ -17,7 +17,7 @@
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
                             placeholder="Masukkan Nama..." v-model="Siswastate.datasiswa.nama" />
                     </div>
-                    <p v-if="this.v$Siswa.datasiswa.nama.$error" class="pl-[25%]">
+                    <p v-if="this.v$Siswa.datasiswa.nama.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Siswa.datasiswa.nama.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex">
@@ -28,7 +28,7 @@
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
                             placeholder="Masukkan NIS..." v-model="Siswastate.datasiswa.nis" />
                     </div>
-                    <p v-if="this.v$Siswa.datasiswa.nis.$error" class="pl-[25%]">
+                    <p v-if="this.v$Siswa.datasiswa.nis.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Siswa.datasiswa.nis.$errors[0].$message }}
                     </p>
                     <!-- <div class="my-3 flex">
@@ -39,7 +39,7 @@
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
                             placeholder="Masukkan Agama..." v-model="Siswastate.datasiswa.agama" />
                     </div>
-                    <p v-if="this.v$Siswa.datasiswa.agama.$error" class="pl-[25%]">
+                    <p v-if="this.v$Siswa.datasiswa.agama.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Siswa.datasiswa.agama.$errors[0].$message }}
                     </p> -->
                     <div class="my-3 flex">
@@ -50,7 +50,7 @@
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
                             placeholder="Masukkan Password..." v-model="Siswastate.datasiswa.password" />
                     </div>
-                    <p v-if="this.v$Siswa.datasiswa.password.$error" class="pl-[25%]">
+                    <p v-if="this.v$Siswa.datasiswa.password.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Siswa.datasiswa.password.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex flex-row justify-between items-center">
@@ -65,7 +65,7 @@
                                 {{ jurusan.nama }}</option>
                         </select>
                     </div>
-                    <p v-if="this.v$Siswa.datasiswa.id_jurusan.$error" class="pl-[25%]">
+                    <p v-if="this.v$Siswa.datasiswa.id_jurusan.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Siswa.datasiswa.id_jurusan.$errors[0].$message }}
                     </p>
                     <div class=" my-3 flex flex-row justify-between items-center">
@@ -78,7 +78,7 @@
                             </option>
                         </select>
                     </div>
-                    <p v-if="this.v$Siswa.datasiswa.id_jurusan.$error" class="pl-[25%]">
+                    <p v-if="this.v$Siswa.datasiswa.id_jurusan.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Siswa.datasiswa.id_jurusan.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex">
@@ -90,7 +90,7 @@
                             placeholder="Masukkan No. Telepon" v-model="Siswastate.datasiswa.no_telepon" />
 
                     </div>
-                    <p v-if="this.v$Siswa.datasiswa.no_telepon.$error" class="pl-[25%]">
+                    <p v-if="this.v$Siswa.datasiswa.no_telepon.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Siswa.datasiswa.no_telepon.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex ">
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                     </div>
-                    <p v-if="this.v$Siswa.datasiswa.jenis_kelamin.$error" class="pl-[25%]">
+                    <p v-if="this.v$Siswa.datasiswa.jenis_kelamin.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Siswa.datasiswa.jenis_kelamin.$errors[0].$message }}
                     </p>
 
@@ -134,7 +134,7 @@
                                     {{ provinsi.nama }}</option>
                             </select>
                         </div>
-                        <p v-if="this.v$Alamat.alamat.provinsi.$error" class="pl-[25%]">
+                        <p v-if="this.v$Alamat.alamat.provinsi.$error" class="pl-[25%] text-red-600">
                             {{ this.v$Alamat.alamat.provinsi.$errors[0].$message }}
                         </p>
                         <div class="flex flex-row justify-between items-center">
@@ -149,7 +149,7 @@
                                     {{ kabupaten.nama }}</option>
                             </select>
                         </div>
-                        <p v-if="this.v$Alamat.alamat.kabupaten.$error" class="pl-[25%]">
+                        <p v-if="this.v$Alamat.alamat.kabupaten.$error" class="pl-[25%] text-red-600">
                             {{ this.v$Alamat.alamat.kabupaten.$errors[0].$message }}
                         </p>
                         <div class="flex flex-row justify-between items-center">
@@ -164,7 +164,7 @@
                                     {{ kecamatan.nama }}</option>
                             </select>
                         </div>
-                        <p v-if="this.v$Alamat.alamat.kecamatan.$error" class="pl-[25%]">
+                        <p v-if="this.v$Alamat.alamat.kecamatan.$error" class="pl-[25%] text-red-600">
                             {{ this.v$Alamat.alamat.kecamatan.$errors[0].$message }}
                         </p>
                         <div class="flex flex-row justify-between items-center">
@@ -178,7 +178,7 @@
                                 </option>
                             </select>
                         </div>
-                        <p v-if="this.v$Alamat.alamat.desa.$error" class="pl-[25%]">
+                        <p v-if="this.v$Alamat.alamat.desa.$error" class="pl-[25%] text-red-600">
                             {{ this.v$Alamat.alamat.desa.$errors[0].$message }}
                         </p>
                     </div>
@@ -207,7 +207,7 @@
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
                             placeholder="Masukkan Detail Tempat..." v-model="alamatState.alamat.detail_tempat" />
                     </div>
-                    <p v-if="this.v$Alamat.alamat.detail_tempat.$error" class="pl-[25%]">
+                    <p v-if="this.v$Alamat.alamat.detail_tempat.$error" class="pl-[25%] text-red-600">
                         {{ this.v$Alamat.alamat.detail_tempat.$errors[0].$message }}
                     </p>
                     <div class="flex gap-3 absolute right-10 -bottom-10">
@@ -273,20 +273,20 @@ export default {
         const Siswarules = computed(() => {
             return {
                 datasiswa: {
-                    nama: { required },
-                    nis: { required, numeric },
-                    jenis_kelamin: { required },
-                    // agama: { required },
+                    nama: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    nis: { required : helpers.withMessage('Data Tidak Boleh Kosong',required), numeric ,maxLength : helpers.withMessage('NIS Tidak Boleh Lebih dari 9 Digit',maxLength(9)) },
+                    jenis_kelamin: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    // agama: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
                     password: {
-                        required,
+                        required : helpers.withMessage('Data Tidak Boleh Kosong',required),
                         minLength: minLength(8),
                         containNumber: helpers.withMessage('Password Harus Mengandung Angka', containNumber),
                         containALphabet: helpers.withMessage('Password Harus Mengandung huruf', containALphabet)
                     },
-                    id_jurusan: { required },
-                    id_kelas: { required },
-                    no_telepon: { required, numeric, minLength: minLength(12), maxLength: maxLength(12) },
-                    id_guru_pembimbing: { required },
+                    id_jurusan: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    id_kelas: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    no_telepon: { required : helpers.withMessage('Data Tidak Boleh Kosong',required), numeric, minLength: minLength(12), maxLength: maxLength(12) },
+                    id_guru_pembimbing: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
 
                 }
             }
@@ -294,11 +294,11 @@ export default {
         const alamatRules = computed(() => {
             return {
                 alamat: {
-                    detail_tempat: { required },
-                    provinsi: { required },
-                    kabupaten: { required },
-                    kecamatan: { required },
-                    desa: { required }
+                    detail_tempat: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    provinsi: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    kabupaten: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    kecamatan: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    desa: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) }
                 }
             }
         })
@@ -359,7 +359,24 @@ export default {
                         siswa : this.Siswastate.datasiswa,
                         alamat : this.alamatState.alamat
                     }
-                }).then((r) => console.log(r))
+                }).then((r) => {
+                    console.log(r);
+                    this.$toast.success("Sukses Dihapus", {
+                        type: "success",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    });
+                })
+                .catch((err) => {
+                    console.log(err.response.data.msg)
+                    this.$toast.error(`${err.response.data.msg}`.toUpperCase(), {
+                        type: "error",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    });
+                })
                 window.location.href = '/datasiswa'
             } else {
                 

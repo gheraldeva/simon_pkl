@@ -3,7 +3,7 @@
         <Navbar />
         <div class="flex">
             <SideBar />
-            <Banner>Tambah Data Siswa</Banner>
+            <Banner>Edit Data DU/DI</Banner>
             <div class="flex flex-col min-w-[75vw] mt-52 mb-10 mx-10 ml-80 bg-white shadow-md px-8 pt-8 pb-18 relative">
                 <h1 class="font-semibold text-xl pl-5 mb-5">Tambah Data</h1>
                 <hr class="border-t-2" />
@@ -18,10 +18,10 @@
                             placeholder="Masukkan Nama Instansi Perusahaan..."
                             v-model="Dudistate.datadudi.nama_instansi_perusahaan" />
                     </div>
-                    <p v-if="this.v$Dudi.datadudi.nama_instansi_perusahaan.$error" class="pl-[25%] text-red-600">
+                    <p v-if="this.v$Dudi.datadudi.nama_instansi_perusahaan.$error" class="pl-[25%]">
                         {{
-                                this.v$Dudi.datadudi.nama_instansi_perusahaan.$errors[0].$message
-                            }}
+                            this.v$Dudi.datadudi.nama_instansi_perusahaan.$errors[0].$message
+                        }}
                     </p>
                     <div class="my-3 flex">
                         <label for="notelp"
@@ -31,7 +31,7 @@
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
                             placeholder="Masukkan No. Telepon" v-model="Dudistate.datadudi.no_telepon" />
                     </div>
-                    <p v-if="this.v$Dudi.datadudi.no_telepon.$error" class="pl-[25%] text-red-600">
+                    <p v-if="this.v$Dudi.datadudi.no_telepon.$error" class="pl-[25%]">
                         {{ this.v$Dudi.datadudi.no_telepon.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex">
@@ -42,7 +42,7 @@
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
                             placeholder="Masukkan Bidang..." v-model="Dudistate.datadudi.bidang" />
                     </div>
-                    <p v-if="this.v$Dudi.datadudi.bidang.$error" class="pl-[25%] text-red-600">
+                    <p v-if="this.v$Dudi.datadudi.bidang.$error" class="pl-[25%]">
                         {{ this.v$Dudi.datadudi.bidang.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex">
@@ -53,76 +53,32 @@
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
                             placeholder="Masukkan Deskripsi..." v-model="Dudistate.datadudi.deskripsi" />
                     </div>
-                    <div class="my-3 flex flex-col gap-2 w-[100%] content-end">
-                        <div class="flex flex-row justify-between items-center">
-                            <label for="provinsi_select"
-                                class="w-[21%] text-right font-semibold text-lg text-nowrap">Provinsi :
-                            </label>
-                            <select name="provinsi" id="provinsi_select" v-model="alamatState.alamat.provinsi"
-                                @change="dataKabupaten(alamatState.alamat.provinsi.id)"
-                                class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
-                                <option value="" disabled>Pilih Provinsi</option>
-                                <option :value="provinsi" v-for="(provinsi, index) in provinsi.data" :key="index">
-                                    {{ provinsi.nama }}</option>
-                            </select>
-                        </div>
-                        <p v-if="this.v$Alamat.alamat.provinsi.$error" class="pl-[25%] text-red-600">
-                            {{ this.v$Alamat.alamat.provinsi.$errors[0].$message }}
-                        </p>
-                        <div class="flex flex-row justify-between items-center">
-                            <label for="kabupaten_select"
-                                class="mr-5 text-right w-[21%] font-semibold text-lg text-nowrap">Kabupaten :
-                            </label>
-                            <select name="kabupaten" id="kabupaten_select" v-model="alamatState.alamat.kabupaten"
-                                @change="dataKecamatan(alamatState.alamat.kabupaten.id)"
-                                class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
-                                <option value="" disabled>Pilih Kabupaten</option>
-                                <option :value="kabupaten" v-for="(kabupaten, index) in kabupaten.data" :key="index">
-                                    {{ kabupaten.nama }}</option>
-                            </select>
-                        </div>
-                        <p v-if="this.v$Alamat.alamat.kabupaten.$error" class="pl-[25%] text-red-600">
-                            {{ this.v$Alamat.alamat.kabupaten.$errors[0].$message }}
-                        </p>
-                        <div class="flex flex-row justify-between items-center">
-                            <label for="kecamatan_select"
-                                class="mr-5 text-right w-[21%] font-semibold text-lg text-nowrap">Kecamatan :
-                            </label>
-                            <select name="kecamatan" id="kecamatan_select" v-model="alamatState.alamat.kecamatan"
-                                @change="dataDesa(alamatState.alamat.kecamatan.id)"
-                                class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
-                                <option value="" disabled>Pilih Kecamatan</option>
-                                <option :value="kecamatan" v-for="(kecamatan, index) in kecamatan.data" :key="index">
-                                    {{ kecamatan.nama }}</option>
-                            </select>
-                        </div>
-                        <p v-if="this.v$Alamat.alamat.kecamatan.$error" class="pl-[25%] text-red-600">
-                            {{ this.v$Alamat.alamat.kecamatan.$errors[0].$message }}
-                        </p>
-                        <div class="flex flex-row justify-between items-center">
-                            <label for="desa_select"
-                                class="mr-5 text-right w-[21%] font-semibold text-lg text-nowrap">Desa :
-                            </label>
-                            <select name="desa" id="desa_select" v-model="alamatState.alamat.desa"
-                                class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
-                                <option value="" disabled>Pilih Desa</option>
-                                <option :value="desa.nama" v-for="(desa, index) in desa.data" :key="index">{{ desa.nama }}
-                                </option>
-                            </select>
-                        </div>
-                        <p v-if="this.v$Alamat.alamat.desa.$error" class="pl-[25%] text-red-600">
-                            {{ this.v$Alamat.alamat.desa.$errors[0].$message }}
-                        </p>
+                    <h3 class="text-lg font-semibold w-[21%] text-right">Alamat : </h3>
+                    <div class="flex flex-row gap-10 w-[100%] my-2">
+                        <p class="w-[21%] text-right font-medium text-lg text-nowrap">Provinsi : </p>
+                        <p class="w-[68%] text-lg font-bold">{{ alamatState.alamat.provinsi }}</p>
                     </div>
-                    <div class="my-3 flex">
-                        <label for="detailTempat"
-                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Detail Tempat
-                            :
-                        </label>
-                        <input type="text" id="detailTempat"
-                            class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Detail Tempat..." v-model="alamatState.alamat.detail_tempat" />
+                    <div class="flex flex-row gap-10 w-[100%] my-2">
+                        <p class="w-[21%] text-right font-medium text-lg text-nowrap">Kabupaten : </p>
+                        <p class="w-[68%] text-lg font-bold">{{ alamatState.alamat.kabupaten }}</p>
                     </div>
+                    <div class="flex flex-row gap-10 w-[100%] my-2">
+                        <p class="w-[21%] text-right font-medium text-lg text-nowrap">Kecamatan : </p>
+                        <p class="w-[68%] text-lg font-bold">{{ alamatState.alamat.kecamatan }}</p>
+                    </div>
+                    <div class="flex flex-row gap-10 w-[100%] my-2">
+                        <p class="w-[21%] text-right font-medium text-lg text-nowrap">Desa : </p>
+                        <p class="w-[68%] text-lg font-bold">{{ alamatState.alamat.desa }}</p>
+                    </div>
+                    <div class="flex flex-row gap-10 w-[100%] my-2">
+                        <p class="w-[21%] text-right font-medium text-lg text-nowrap">Detail Tempat : </p>
+                        <p class="w-[68%] text-lg font-bold">{{ alamatState.alamat.detail_tempat }}</p>
+                    </div>
+                    <button
+                            class="text-white bg-[#38A3F2] ml-[25%] hover:bg-blue-600 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2 text-center"
+                            @click="editAlamat">
+                            Edit Alamat
+                        </button>
                     <div class="flex gap-3 absolute right-10 -bottom-10">
                         <router-link to="/datadudi"
                             class="bg-white text-[#38A3FF] border p-2 rounded-md border-[#38A3FF] hover:bg-[#38A3FF] hover:text-white">Batalkan</router-link>
@@ -151,7 +107,7 @@ import {
     maxLength,
     helpers,
 } from "@vuelidate/validators";
-import { reactive, computed, toRef } from "vue";
+import { reactive, computed } from "vue";
 
 export default {
     name: "tambahdatadudi",
@@ -179,26 +135,26 @@ export default {
         const Siswarules = computed(() => {
             return {
                 datadudi: {
-                    nama_instansi_perusahaan: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    nama_instansi_perusahaan: { required },
                     no_telepon: {
-                        required : helpers.withMessage('Data Tidak Boleh Kosong',required),
+                        required,
                         numeric,
                         minLength: minLength(12),
                         maxLength: maxLength(12),
                     },
-                    bidang: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    deskripsi: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) }
+                    bidang: { required },
+                    deskripsi: { required }
                 },
             };
         });
         const alamatRules = computed(() => {
             return {
                 alamat: {
-                    detail_tempat: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    provinsi: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    kabupaten: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    kecamatan: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    desa: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    detail_tempat: { required },
+                    provinsi: { required },
+                    kabupaten: { required },
+                    kecamatan: { required },
+                    desa: { required },
                 },
             };
         });
@@ -221,6 +177,16 @@ export default {
         };
     },
     methods: {
+        editAlamat(){
+            window.location.href = `/editalamatdudi/${this.$route.params.id}`
+        },
+        setDudi(data) {
+            this.Dudistate.datadudi.nama_instansi_perusahaan = data.nama_instansi_perusahaan
+            this.Dudistate.datadudi.no_telepon = data.no_telepon
+            this.Dudistate.datadudi.bidang = data.bidang
+            this.Dudistate.datadudi.deskripsi = data.deskripsi
+            this.alamatState.alamat = data.alamat
+        },
         simpanData() {
             this.v$Dudi.$validate();
             this.v$Alamat.$validate();
@@ -233,14 +199,17 @@ export default {
                     this.alamatState.alamat.kecamatan.nama;
 
                 axios({
-                    method: "post",
-                    url: "http://localhost:2008/admin/addDudi",
-                    data: {
-                        dudi: this.Dudistate.datadudi,
-                        alamat: this.alamatState.alamat,
-                    },
+                    method: "put",
+                    url: ("http://localhost:2008/admin/updateDudi/" + this.$route.params.id),
+                    data: this.Dudistate.datadudi,
                 }).then((r) => console.log(r));
                 window.location.href = "/datadudi";
+                this.$toast.success("Sukses Di Edit", {
+                    type: "success",
+                    position: "top-right",
+                    duration: 3000,
+                    dismissable: true,
+                });
             } else {
             }
         },
@@ -252,9 +221,9 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kabupaten/" + data + ".json";
             axios.get(url).then((response) => this.getKabupaten(response));
 
-            this.datadudi.alamat.kabupaten = '';
-            this.datadudi.alamat.kecamatan = '';
-            this.datadudi.alamat.desa = '';
+            // this.datadudi.alamat.kabupaten = '';
+            // this.datadudi.alamat.kecamatan = '';
+            // this.datadudi.alamat.desa = '';
         },
         getKabupaten(data) {
             this.kabupaten = data;
@@ -264,8 +233,8 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kecamatan/" + data + ".json";
             axios.get(url).then((response) => this.getKecamatan(response));
 
-            this.datadudi.alamat.kecamatan = '';
-            this.datadudi.alamat.desa = '';
+            // this.datadudi.alamat.kecamatan = '';
+            // this.datadudi.alamat.desa = '';
         },
         getKecamatan(data) {
             this.kecamatan = data;
@@ -275,7 +244,7 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kelurahan/" + data + ".json";
             axios.get(url).then((response) => this.getDesa(response));
 
-            this.datadudi.alamat.desa = '';
+            // this.datadudi.alamat.desa = '';
         },
         getDesa(data) {
             this.desa = data;
@@ -288,6 +257,8 @@ export default {
         axios
             .get("https://ibnux.github.io/data-indonesia/provinsi.json")
             .then((response) => this.dataProvinsi(response));
+        axios.get('http://localhost:2008/admin/findDudi/' + this.$route.params.id)
+            .then((r) => this.setDudi(r.data.data))
 
     },
 };

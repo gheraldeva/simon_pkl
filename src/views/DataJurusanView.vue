@@ -2,10 +2,8 @@
 import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import Banner from "@/components/Banner.vue";
-import ActionButtonSiswa from "@/components/ActionButtonSiswa.vue";
+import ActionButtonJurusan from "@/components/ActionButtonJurusan.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
-import TrueIcon from "@/components/icons/TrueIcon.vue";
-import FalseIcon from "@/components/icons/FalseIcon.vue";
 
 </script>
 
@@ -16,11 +14,11 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
                 src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
       <SideBar />
-      <Banner>Data Siswa</Banner>
+      <Banner>Data Jurusan</Banner>
       
-      <div class="tabel">
-        <div class="flex flex-col mt-52 mb-10 mx-10 ml-72 bg-white shadow-md p-16 relative">
-          <div class="-m-5">
+      <div class="tabel relative">
+        <div class="flex flex-col mt-52 mb-10 mx-10 ml-72 bg-white shadow-md p-32 relative">
+          <div class="-m-5 ">
             <div class="p-1.5 min-w-full align-middle">
               <TableNavigation>
                 <template #default-filter>
@@ -28,7 +26,7 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
                 </template>
               </TableNavigation>
 
-              <div class="overflow-hidden border-2 border-black">
+              <div class="border-2 relative border-black">
                 <table class="min-w-full divide-y divide-black">
                   <thead>
                     <tr class="divide-x-2 divide-black text-sm">
@@ -38,17 +36,6 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
                       <th scope="col" class="text-nowrap py-2 text-center font-medium">
                         Nama Siswa
                       </th>
-                      <th scope="col" class="px-4 py-2 text-center font-medium">
-                        NIS
-                      </th>
-                      <th scope="col" class="px-2 py-2 font-medium text-nowrap">
-                        Jenis Kelamin
-                      </th>
-                      <th scope="col" class="px-2 py-2 font-medium">
-                        Status
-                      </th>
-                      <th scope="col" class="py-2 px-2 font-medium">Alamat</th>
-                      <th scope="col" class="py-2 px-2 font-medium">Guru Pembimbing</th>
                       <th scope="col" class="py-2 font-medium">Act</th>
                     </tr>
                   </thead>
@@ -56,18 +43,9 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
                     <tr v-for="(data, index) in siswa.data" class="divide-x-2 divide-black">
                       <td class="px-4 font-semibold">{{ index + 1 }}.</td>
                       <td class="px-2 py-1 text-nowrap">{{ data.nama }}</td>
-                      <td class="px-4 py-1">{{ data.nis }}</td>
-                      <td class="px-2 py-1 capitalize">{{ data.jenis_kelamin == "laki" ? "Laki - laki" : "perempuan" }}
-                      </td>
-                      <td class="px-5 py-1" v-if="data.status == 'pkl'"><TrueIcon/></td>
-                      <td class="px-5 py-1" v-else><FalseIcon/></td>
-                      <td class="px-2 py-1">{{ data.alamat.desa }},{{ data.alamat.kecamatan }},{{ data.alamat.kabupaten
-                        }},{{
-                        data.alamat.provinsi }}</td>
-                      <td class="px-4 py-1">{{ data.guru_pembimbing.nama }}</td>
-                      <td class="px-4 py-1 text-end">
-                        <button type="button">
-                          <ActionButtonSiswa :datasiswa="data" />
+                      <td class="px-1 py-1 text-end">
+                        <button type="button" >
+                          <ActionButtonJurusan :datasiswa="data" />
                         </button>
                       </td>
                     </tr>
@@ -93,16 +71,13 @@ export default {
   },
   methods: {
     setSiswa(data) {
-
       this.siswa = data
-      console.log(this.siswa);
+      // console.log(this.siswa);
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllSiswa')
+    axios.get('http://localhost:2008/admin/findAllJurusan')
       .then((r) => this.setSiswa(r.data))
-
-
   }
 }
 

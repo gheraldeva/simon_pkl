@@ -1,12 +1,3 @@
-<script setup>
-import Navbar from "@/components/Navbar.vue";
-import SideBar from "@/components/SideBar.vue";
-import ActionButton from "@/components/icons/ActionButton.vue";
-import Banner from "@/components/Banner.vue";
-import TableNavigation from "@/components/TableNavigation.vue";
-
-</script>
-
 <template>
   <div class="bg-bgcolor overflow-x-clip">
     <Navbar />
@@ -59,7 +50,7 @@ import TableNavigation from "@/components/TableNavigation.vue";
                       <td class="px-2 py-1">{{ data.alamat.desa }},{{ data.alamat.kecamatan }},{{ data.alamat.kabupaten }},{{ data.alamat.provinsi }}</td>
                       <td class="px-4 py-1 text-end">
                         <button type="button">
-                          <ActionButton />
+                          <ActionButtonGuru :dataguru="data" />
                         </button>
                       </td>
                     </tr>
@@ -76,8 +67,16 @@ import TableNavigation from "@/components/TableNavigation.vue";
 
 <script>
 import axios from "axios";
+import Navbar from "@/components/Navbar.vue";
+import SideBar from "@/components/SideBar.vue";
+import ActionButtonGuru from "@/components/ActionButtonGuru.vue";
+import Banner from "@/components/Banner.vue";
+import TableNavigation from "@/components/TableNavigation.vue";
+
 
 export default {
+  name: 'dataguru',
+  components: {Navbar,SideBar,ActionButtonGuru,Banner,TableNavigation},
   data() {
     return {
       guru: []

@@ -8,7 +8,7 @@ export default {
         Montserrat: ["Montserrat, sans-serif"]
       },
       colors: {
-        'left-linear' : '#0275D8',
+        'left-linear' : '#37A3FE',
         'right-linear' : '#2995F3',
         'card-color' : '#1B1D2A',
         'hr-color' : '#262837',

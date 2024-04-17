@@ -10,7 +10,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/about',
+      path: '/about/:id',
       name: 'about',
       component: () => import('../views/AboutView.vue')
     },
@@ -28,6 +28,11 @@ const router = createRouter({
       path: '/datadudi',
       name: 'datadudi',
       component: () => import('../views/DataDudiView.vue')
+    },
+    {
+      path: '/datajurusan',
+      name: 'datajurusan',
+      component: () => import('../views/DataJurusanView.vue')
     },
     {
       path: '/laporansiswa',
@@ -48,6 +53,56 @@ const router = createRouter({
       path: '/tambahdatadudi',
       name: 'tambahdatadudi',
       component: () => import('../views/TambahDataDudi.vue')
+    },
+    {
+      path: '/detaildudi/:id',
+      name: 'detaildudiview',
+      component: () => import('../views/DetailDudiView.vue')
+    },
+    {
+      path: '/editdudi/:id',
+      name: 'editdudi',
+      component: () => import('../views/EditDudi.vue')
+    },
+    {
+      path: '/detailsiswa/:id',
+      name: 'detailsiswaview',
+      component: () => import('../views/DetailSiswaView.vue')
+    },
+    {
+      path: '/editsiswa/:id',
+      name: 'editsiswa',
+      component: () => import('../views/EditSiswa.vue')
+    },
+    {
+      path: '/detailguru/:id',
+      name: 'detailguruview',
+      component: () => import('../views/DetailGuruView.vue')
+    },
+    {
+      path: '/editguru/:id',
+      name: 'editguru',
+      component: () => import('../views/EditGuru.vue')
+    },
+    {
+      path: '/editalamatguru/:id',
+      name: 'editalamatguru',
+      component: () => import('../views/EditAlamatGuru.vue')
+    },
+    {
+      path: '/editalamatsiswa/:id',
+      name: 'editalamatsiswa',
+      component: () => import('../views/EditAlamatSiswa.vue')
+    },
+    {
+      path: '/editalamatdudi/:id',
+      name: 'editalamatdudi',
+      component: () => import('../views/EditAlamatDudi.vue')
+    },
+    {
+      path: '/tambahdatajurusan',
+      name: 'tambahdatajurusan',
+      component: () => import('../views/TambahDataJurusan.vue')
     },
   ]
 })

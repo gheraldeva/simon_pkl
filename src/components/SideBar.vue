@@ -45,6 +45,10 @@ import { RouterLink } from "vue-router";
               <RouterLink to="/datadudi">Data Dudi</RouterLink>
             </li>
             <hr />
+            <li>
+              <RouterLink to="/datajurusan">Data Jurusan</RouterLink>
+            </li>
+            <hr />
           </ul>
         </transition>
       </div>

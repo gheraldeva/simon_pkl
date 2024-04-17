@@ -17,7 +17,7 @@
               <router-link to="/tambahdatadudi" class="p-5 bg-[#38A3FF] rounded-full absolute right-5" tag="button"><img
                   src="../assets/+.svg" alt=""></router-link>
 
-              <div class="overflow-hidden border-2 border-black">
+              <div class="border-2 border-black">
                 <table class="min-w-full divide-y divide-black">
                   <thead>
                     <tr class="divide-x-2 divide-black">
@@ -54,7 +54,7 @@
                       <td class="px-4 py-1">{{ data.deskripsi }}</td>
                       <td class="px-4 py-1 text-end">
                         <button type="button">
-                          <ActionButton :datadudi="data" />
+                          <ActionButtonDudi :datadudi="data" />
                         </button>
                       </td>
                     </tr>
@@ -74,7 +74,7 @@
 import axios from "axios";
 import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
-import ActionButton from "@/components/icons/ActionButton.vue";
+import ActionButtonDudi from "@/components/ActionButtonDudi.vue";
 import Banner from "@/components/Banner.vue";
 import TambahData from "@/components/TambahData.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
@@ -82,7 +82,7 @@ import TableNavigation from "@/components/TableNavigation.vue";
 
 export default {
   name : 'datadudi',
-  components : {Navbar,SideBar,ActionButton,Banner,TambahData,TableNavigation},
+  components : {Navbar,SideBar,ActionButtonDudi,Banner,TambahData,TableNavigation},
   data() {
     return {
       dudies: []
@@ -96,8 +96,6 @@ export default {
   mounted() {
     axios.get('http://localhost:2008/admin/findAllDudi')
       .then((r) => this.setDudies(r.data))
-
-
   }
 }
 
