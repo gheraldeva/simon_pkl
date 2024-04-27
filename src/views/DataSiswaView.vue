@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import Banner from "@/components/Banner.vue";
 import ActionButtonSiswa from "@/components/ActionButtonSiswa.vue";
-import TableNavigation from "@/components/TableNavigation.vue";
+import TableNavigationSiswa from "@/components/TableNavigationSiswa.vue";
 import TrueIcon from "@/components/icons/TrueIcon.vue";
 import FalseIcon from "@/components/icons/FalseIcon.vue";
 
@@ -12,23 +12,19 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
 <template>
   <div class="bg-bgcolor overflow-x-clip">
     <Navbar />
-    <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50" tag="button"><img
-                src="../assets/+.svg" alt=""></router-link>
+    <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
+      tag="button"><img src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
       <SideBar />
       <Banner>Data Siswa</Banner>
-      
+
       <div class="tabel">
         <div class="flex flex-col mt-52 mb-10 mx-10 ml-72 bg-white shadow-md p-16 relative">
           <div class="-m-5">
             <div class="p-1.5 min-w-full align-middle">
-              <TableNavigation>
-                <template #default-filter>
-                  Status: Terpenuhi
-                </template>
-              </TableNavigation>
+              <TableNavigationSiswa @send-url="SendUrl" :siswa_url="siswa_url" @search="carinama" />
 
-              <div class="overflow-hidden border-2 border-black">
+              <div class="border-2 border-black">
                 <table class="min-w-full divide-y divide-black">
                   <thead>
                     <tr class="divide-x-2 divide-black text-sm">
@@ -59,11 +55,15 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
                       <td class="px-4 py-1">{{ data.nis }}</td>
                       <td class="px-2 py-1 capitalize">{{ data.jenis_kelamin == "laki" ? "Laki - laki" : "perempuan" }}
                       </td>
-                      <td class="px-5 py-1" v-if="data.status == 'pkl'"><TrueIcon/></td>
-                      <td class="px-5 py-1" v-else><FalseIcon/></td>
+                      <td class="px-5 py-1" v-if="data.status == 'pkl'">
+                        <TrueIcon />
+                      </td>
+                      <td class="px-5 py-1" v-else>
+                        <FalseIcon />
+                      </td>
                       <td class="px-2 py-1">{{ data.alamat.desa }},{{ data.alamat.kecamatan }},{{ data.alamat.kabupaten
                         }},{{
-                        data.alamat.provinsi }}</td>
+                          data.alamat.provinsi }}</td>
                       <td class="px-4 py-1">{{ data.guru_pembimbing.nama }}</td>
                       <td class="px-4 py-1 text-end">
                         <button type="button">
@@ -88,23 +88,55 @@ import axios from "axios";
 export default {
   data() {
     return {
-      siswa: []
+      siswa: [],
+      siswa_url: 'http://localhost:2008/admin/findSiswaFilter?',
     }
   },
   methods: {
     setSiswa(data) {
 
       this.siswa = data
-      console.log(this.siswa);
+      // console.log(this.siswa);
+    },
+    SendUrl(query) {
+      // console.log(query);
+      if (query) {
+        axios.get('http://localhost:2008/admin/findSiswaFilter?', {
+          withCredentials : true,
+          params: {
+            jenis_kelamin : query.jenis_kelamin,
+            id_jurusan : query.id_jurusan,
+            id_kelas : query.id_kelas
+          }
+        })
+          .then((r) => this.setSiswa(r.data.data))
+      }
+
+    },
+    carinama(input) {
+      console.log(input);
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllSiswa')
-      .then((r) => this.setSiswa(r.data))
+    axios.get(this.siswa_url,{withCredentials : true})
+      .then((r) => {
+        this.setSiswa(r.data.data)
+      })
+    
 
+
+    // axios.get('http://localhost:2008/admin/findSiswaFilter?', null, {
+    //   params: {
+    //     jenis_kelamin: this.jenis_kelamin
+    //   }
+    // })
+    //   .then((r) => console.log(r))
 
   }
 }
 
 
 </script>
+
+<!-- bikin tampunaganya,dimaisnmg filter jenis kelmsa io svgvgdhs ,{}
+,.jneinbs  -->

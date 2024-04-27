@@ -83,7 +83,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findDudi/' + this.$route.params.id)
+    axios.get('http://localhost:2008/admin/findDudi/' + this.$route.params.id,{withCredentials : true})
       .then((r) => this.setDudies(r.data.data))
   }
 }

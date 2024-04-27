@@ -10,6 +10,11 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue')
+    },
+    {
       path: '/about/:id',
       name: 'about',
       component: () => import('../views/AboutView.vue')
@@ -33,6 +38,21 @@ const router = createRouter({
       path: '/datajurusan',
       name: 'datajurusan',
       component: () => import('../views/DataJurusanView.vue')
+    },
+    {
+      path: '/tambahdatajurusan',
+      name: 'tambahdatajurusan',
+      component: () => import('../views/TambahDataJurusan.vue')
+    },
+    {
+      path: '/tambahdatakelas',
+      name: 'tambahdatakelas',
+      component: () => import('../views/TambahDataKelas.vue')
+    },
+    {
+      path: '/datakelas',
+      name: 'datakelas',
+      component: () => import('../views/DataKelasView.vue')
     },
     {
       path: '/laporansiswa',
@@ -99,11 +119,7 @@ const router = createRouter({
       name: 'editalamatdudi',
       component: () => import('../views/EditAlamatDudi.vue')
     },
-    {
-      path: '/tambahdatajurusan',
-      name: 'tambahdatajurusan',
-      component: () => import('../views/TambahDataJurusan.vue')
-    },
+    
   ]
 })
 

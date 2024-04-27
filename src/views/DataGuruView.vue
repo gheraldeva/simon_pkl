@@ -1,6 +1,8 @@
 <template>
   <div class="bg-bgcolor overflow-x-clip">
     <Navbar />
+    <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
+      tag="button"><img src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
       <SideBar />
       <Banner>Data Guru Pembimbing</Banner>
@@ -14,8 +16,6 @@
                 </template>
               </TableNavigation>
 
-              <router-link to="/tambahdataguru" class="p-5 bg-[#38A3FF] rounded-full absolute right-5" tag="button"><img
-                src="../assets/+.svg" alt=""></router-link>
 
               <div class="overflow-hidden border-2 border-black">
                 <table class="min-w-full divide-y divide-black">
@@ -90,7 +90,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllGuruPembimbing')
+    axios.get('http://localhost:2008/admin/findAllGuruPembimbing',{withCredentials: true})
       .then((r) => this.setGuru(r.data))
 
     

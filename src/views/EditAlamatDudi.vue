@@ -182,7 +182,7 @@ export default {
         },
         dataKabupaten(data) {
             const url = 'https://ibnux.github.io/data-indonesia/kabupaten/' + data + '.json'
-            axios.get(url)
+            axios.get(url,{withCredentials : true})
                 .then((response) => this.getKabupaten(response))
 
 

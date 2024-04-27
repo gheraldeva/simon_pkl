@@ -361,10 +361,12 @@ export default {
                     }
                 }).then((r) => {
                     console.log(r);
-                    this.$toast.success("Sukses Dihapus", {
+                    
+                    this.$router.push({ path: "/datasiswa" });
+                    this.$toast.success("Sukses Ditambahkan", {
                         type: "success",
                         position: "top-right",
-                        duration: 3000,
+                        duration: 1300,
                         dismissable: true,
                     });
                 })
@@ -377,7 +379,6 @@ export default {
                         dismissable: true,
                     });
                 })
-                window.location.href = '/datasiswa'
             } else {
                 
             }

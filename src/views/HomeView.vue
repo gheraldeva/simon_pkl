@@ -17,6 +17,7 @@ import Banner from "@/components/Banner.vue"
 </template>
 <script>
 import { reactive } from 'vue';
+import axios from "axios";
 
 export default {
   setup() {
@@ -30,6 +31,10 @@ export default {
       counter,
       increment
     };
+  },
+  mounted(){
+    axios.get("http://localhost:2008/admin/cekToken",{withCredentials : true})
+      .then((r) => console.log(r.data))
   }
 };
 </script>

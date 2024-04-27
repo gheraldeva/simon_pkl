@@ -239,8 +239,26 @@ export default {
                         dudi: this.Dudistate.datadudi,
                         alamat: this.alamatState.alamat,
                     },
-                }).then((r) => console.log(r));
-                window.location.href = "/datadudi";
+                }).then((r) => {
+                    console.log(r);
+                    
+                    this.$router.push({ path: "/datadudi" });
+                    this.$toast.success("Sukses Ditambahkan", {
+                        type: "success",
+                        position: "top-right",
+                        duration: 1300,
+                        dismissable: true,
+                    });
+                })
+                .catch((err) => {
+                    console.log(err.response.data.msg)
+                    this.$toast.error(`${err.response.data.msg}`.toUpperCase(), {
+                        type: "error",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    });
+                })
             } else {
             }
         },

@@ -26,10 +26,6 @@
                     <button @click="hapusData(datasiswa)"
                         :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'px-2 py-2 text-sm']">Delete</button>
                     </MenuItem>
-                    <MenuItem v-slot="{ active }">
-                    <button @click="detailData(datasiswa)"
-                        :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'px-2 py-2 text-sm']">Detail</button>
-                    </MenuItem>
                 </div>
             </MenuItems>
         </transition>

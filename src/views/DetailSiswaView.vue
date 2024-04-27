@@ -18,6 +18,14 @@
                     <p class="w-[70%] text-lg font-bold">{{ dudies.nis }}</p>
                 </div>
                 <div class="flex flex-row gap-10 w-[100%]">
+                    <p class="w-[30%] text-right font-medium text-lg text-nowrap">Jurusan : </p>
+                    <p class="w-[70%] text-lg font-bold">{{ dudies.jurusan }}</p>
+                </div>
+                <div class="flex flex-row gap-10 w-[100%]">
+                    <p class="w-[30%] text-right font-medium text-lg text-nowrap">Kelas : </p>
+                    <p class="w-[70%] text-lg font-bold">{{ dudies.kelas }}</p>
+                </div>
+                <div class="flex flex-row gap-10 w-[100%]">
                     <p class="w-[30%] text-right font-medium text-lg text-nowrap">Jenis Kelamin : </p>
                     <p class="w-[70%] text-lg font-bold">{{ dudies.jenis_kelamin == "laki" ? "Laki - Laki" : "Perempuan" }}</p>
                 </div>
@@ -83,7 +91,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findSiswa/' + this.$route.params.id)
+    axios.get('http://localhost:2008/admin/findSiswa/' + this.$route.params.id,{withCredentials : true})
       .then((r) => this.setDudies(r.data.data))
   }
 }

@@ -26,10 +26,6 @@
                     <button @click="hapusData(datasiswa)"
                         :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'px-2 py-2 text-sm']">Delete</button>
                     </MenuItem>
-                    <MenuItem v-slot="{ active }">
-                    <button @click="detailData(datasiswa)"
-                        :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'px-2 py-2 text-sm']">Detail</button>
-                    </MenuItem>
                 </div>
             </MenuItems>
         </transition>
@@ -47,20 +43,16 @@ export default {
         'datasiswa'
     ], methods: {
         hapusData(data) {
-            axios.delete('http://localhost:2008/admin/deleteSiswa/' + data.id)
-            .then((r) => {
-                    console.log(r);
-                    
-                    this.$toast.success("Sukses Dihapus", {
+            axios.delete('http://localhost:2008/admin/deleteKelas/' + data.id)
+                .then((r) => {
+                    this.$toast.success("SUKSES DIHAPUS", {
                         type: "success",
                         position: "top-right",
-                        duration: 1300,
+                        duration: 3000,
                         dismissable: true,
                     });
-                    location.reload()
                 })
                 .catch((err) => {
-                    console.log(err.response.data.msg)
                     this.$toast.error(`${err.response.data.msg}`.toUpperCase(), {
                         type: "error",
                         position: "top-right",
@@ -69,12 +61,14 @@ export default {
                     });
                 })
 
-            
+            window.location.reload()
+
+
         },
-        detailData(data){
+        detailData(data) {
             window.location.href = `/detailsiswa/${data.id}`;
         },
-        edit(data){
+        edit(data) {
             window.location.href = `/editsiswa/${data.id}`;
         },
     }
