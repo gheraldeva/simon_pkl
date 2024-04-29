@@ -3,25 +3,23 @@
         <Navbar />
         <div class="flex">
             <SideBar />
-            <Banner>Tambah Data Siswa</Banner>
+            <Banner>Tambah Data Pembimbing Dudi</Banner>
             <div class="flex flex-col min-w-[75vw] mt-52 mb-10 mx-10 ml-80 bg-white shadow-md px-8 pt-8 pb-18 relative">
                 <h1 class="font-semibold text-xl pl-5 mb-5">Tambah Data</h1>
                 <hr class="border-t-2" />
                 <form action="" v-on:submit.prevent class="mt-5 pr-20 relative">
                     <div class="my-3 flex">
-                        <label for="nama_instansi_perusahaan"
-                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Nama Instansi
-                            :
+                        <label for="nama"
+                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Nama :
                         </label>
-                        <input type="text" id="nama_instansi_perusahaan"
+                        <input type="text" id="nama"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Nama Instansi Perusahaan..."
-                            v-model="Dudistate.datadudi.nama_instansi_perusahaan" />
+                            placeholder="Masukkan Nama..." v-model="Dudistate.datadudi.nama" />
                     </div>
-                    <p v-if="this.v$Dudi.datadudi.nama_instansi_perusahaan.$error" class="pl-[25%] text-red-600">
+                    <p v-if="this.v$Dudi.datadudi.nama.$error" class="pl-[25%] text-red-600">
                         {{
-                                this.v$Dudi.datadudi.nama_instansi_perusahaan.$errors[0].$message
-                            }}
+                            this.v$Dudi.datadudi.nama.$errors[0].$message
+                        }}
                     </p>
                     <div class="my-3 flex">
                         <label for="notelp"
@@ -35,25 +33,93 @@
                         {{ this.v$Dudi.datadudi.no_telepon.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex">
-                        <label for="bidang"
-                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Bidang :
+                        <label for="username"
+                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Username :
                         </label>
-                        <input type="text" id="bidang"
+                        <input type="text" id="username"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Bidang..." v-model="Dudistate.datadudi.bidang" />
+                            placeholder="Masukkan Username..." v-model="Dudistate.datadudi.username" />
                     </div>
-                    <p v-if="this.v$Dudi.datadudi.bidang.$error" class="pl-[25%] text-red-600">
-                        {{ this.v$Dudi.datadudi.bidang.$errors[0].$message }}
+                    <p v-if="this.v$Dudi.datadudi.username.$error" class="pl-[25%] text-red-600">
+                        {{ this.v$Dudi.datadudi.username.$errors[0].$message }}
                     </p>
                     <div class="my-3 flex">
-                        <label for="deskripsi"
-                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Deskripsi :
+                        <label for="password"
+                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Password :
                         </label>
-                        <input type="text" id="deskripsi"
+                        <input type="password" id="password"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Deskripsi..." v-model="Dudistate.datadudi.deskripsi" />
+                            placeholder="Masukkan Password..." v-model="Dudistate.datadudi.password" />
                     </div>
+                    <p v-if="this.v$Dudi.datadudi.password.$error" class="pl-[25%] text-red-600">
+                        {{ this.v$Dudi.datadudi.password.$errors[0].$message }}
+                    </p>
+                    <!-- <div class="my-3 flex">
+                        <label for="agama"
+                            class="w-[25%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">agama :
+                        </label>
+                        <input type="text" id="agama"
+                            class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
+                            placeholder="Masukkan agama..." v-model="Dudistate.datadudi.agama" />
+                    </div> -->
+                    <div class="my-3 flex ">
+                        <label for="jenis-kelamin"
+                            class="w-[21%] text-right my-auto pl-5 font-semibold text-lg text-nowrap">Jenis
+                            Kelamin :
+                        </label>
+                        <div class="pl-5 flex gap-5 items-center">
+                            <div class="flex items-center gap-2">
+                                <input id="jenis-kelamin" type="radio" value="laki"
+                                    v-model="Dudistate.datadudi.jenis_kelamin" name="jenis-kelamin"
+                                    class="w-4 h-4 text-blue-600 p-2.5 bg-gray-100 border-gray-300 ">
+                                <label for="jenis-kelamin"
+                                    class=" text-lg font-semibold cursor-pointer">Laki-Laki</label>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input id="jenis-kelamin-2" type="radio" value="perempuan"
+                                    v-model="Dudistate.datadudi.jenis_kelamin" name="jenis-kelamin"
+                                    class="w-4 h-4 text-blue-600 p-2.5 bg-gray-100 border-gray-300 ">
+                                <label for="jenis-kelamin-2"
+                                    class=" text-lg font-semibold cursor-pointer">Perempuan</label>
+                            </div>
+                        </div>
+                    </div>
+                    <p v-if="this.v$Dudi.datadudi.jenis_kelamin.$error" class="pl-[25%] text-red-600">
+                        {{ this.v$Dudi.datadudi.jenis_kelamin.$errors[0].$message }}
+                    </p>
                     <div class="my-3 flex flex-col gap-2 w-[100%] content-end">
+                        <div class="flex flex-row justify-between items-center">
+                            <label for="dudi"
+                                class="w-[21%] text-right font-semibold text-lg text-nowrap">Dudi yang di Bimbing :
+                            </label>
+                            <select name="dudi" id="dudi" v-model="Dudistate.datadudi.id_dudi"
+                                class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
+                                <option value="" disabled>Pilih DU/Di</option>
+                                <option :value="dudi.id" v-for="(dudi, index) in dudi" :key="index">
+                                    {{ dudi.nama_instansi_perusahaan }}</option>
+                            </select>
+                        </div>
+                        <p v-if="this.v$Alamat.alamat.provinsi.$error" class="pl-[25%] text-red-600">
+                            {{ this.v$Alamat.alamat.provinsi.$errors[0].$message }}
+                        </p>
+                        <div class="flex flex-row justify-between items-center">
+                            <label for="agama"
+                                class="w-[19%] text-right my-auto pl-5 font-semibold text-lg text-nowrap mx-5">Agama :
+                            </label>
+                            <select name="agama" id="agama_select" v-model="Dudistate.datadudi.agama"
+                                class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
+                                <option value="" disabled>Pilih agama</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                <option value="Kristen Katolik">Kristen Katolik</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Buddha">Buddha</option>
+                                <option value="Kong Hu Cu">Kong Hu Cu</option>
+                            </select>
+                        </div>
+                        <p v-if="this.v$Dudi.datadudi.agama.$error" class="pl-[25%] text-red-600">
+                            {{ this.v$Dudi.datadudi.agama.$errors[0].$message }}
+                        </p>
                         <div class="flex flex-row justify-between items-center">
                             <label for="provinsi_select"
                                 class="w-[21%] text-right font-semibold text-lg text-nowrap">Provinsi :
@@ -106,7 +172,8 @@
                             <select name="desa" id="desa_select" v-model="alamatState.alamat.desa"
                                 class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                                 <option value="" disabled>Pilih Desa</option>
-                                <option :value="desa.nama" v-for="(desa, index) in desa.data" :key="index">{{ desa.nama }}
+                                <option :value="desa.nama" v-for="(desa, index) in desa.data" :key="index">{{ desa.nama
+                                    }}
                                 </option>
                             </select>
                         </div>
@@ -124,7 +191,7 @@
                             placeholder="Masukkan Detail Tempat..." v-model="alamatState.alamat.detail_tempat" />
                     </div>
                     <div class="flex gap-3 absolute right-10 -bottom-10">
-                        <router-link to="/datadudi"
+                        <router-link to="/datapembimbingdudi"
                             class="bg-white text-[#38A3FF] border p-2 rounded-md border-[#38A3FF] hover:bg-[#38A3FF] hover:text-white">Batalkan</router-link>
                         <button type="submit"
                             class="text-white bg-[#38A3FF] hover:bg-blue-600 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2 text-center"
@@ -159,10 +226,13 @@ export default {
     setup() {
         const Dudistate = reactive({
             datadudi: {
-                nama_instansi_perusahaan: '',
+                id_dudi : '',
+                nama: '',
                 no_telepon: '',
-                bidang: '',
-                deskripsi: '',
+                username: '',
+                password: '',
+                jenis_kelamin: '',
+                agama: '',
             },
         });
         const alamatState = reactive({
@@ -176,29 +246,38 @@ export default {
             },
         });
 
+        // const containNumber = (value) => value.includes(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
+        const containALphabet = (value) => value.includes('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+
         const Siswarules = computed(() => {
             return {
                 datadudi: {
-                    nama_instansi_perusahaan: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    nama: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) },
                     no_telepon: {
-                        required : helpers.withMessage('Data Tidak Boleh Kosong',required),
+                        required: helpers.withMessage('Data Tidak Boleh Kosong', required),
                         numeric,
                         minLength: minLength(12),
                         maxLength: maxLength(12),
                     },
-                    bidang: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    deskripsi: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) }
+                    username: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) },
+                    password: {
+                        required : helpers.withMessage('Data Tidak Boleh Kosong',required),
+                        minLength: minLength(8),
+                        containALphabet: helpers.withMessage('Password Harus Mengandung huruf', containALphabet)
+                    },
+                    jenis_kelamin: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) },
+                    agama: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) }
                 },
             };
         });
         const alamatRules = computed(() => {
             return {
                 alamat: {
-                    detail_tempat: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    provinsi: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    kabupaten: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    kecamatan: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    desa: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
+                    detail_tempat: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) },
+                    provinsi: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) },
+                    kabupaten: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) },
+                    kecamatan: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) },
+                    desa: { required: helpers.withMessage('Data Tidak Boleh Kosong', required) },
                 },
             };
         });
@@ -218,6 +297,7 @@ export default {
             kabupaten: [],
             kecamatan: [],
             desa: [],
+            dudi: []
         };
     },
     methods: {
@@ -234,16 +314,16 @@ export default {
 
                 axios({
                     method: "post",
-                    url: "http://localhost:2008/admin/addDudi",
+                    url: "http://localhost:2008/admin/addPembimbingDudi",
                     data: {
-                        dudi: this.Dudistate.datadudi,
+                        pembimbing_dudi: this.Dudistate.datadudi,
                         alamat: this.alamatState.alamat,
                     },
-                    withCredentials:true
+                    withCredentials: true
                 }).then((r) => {
                     console.log(r);
-                    
-                    this.$router.push({ path: "/datadudi" });
+
+                    this.$router.push({ path: "/datapembimbingdudi" });
                     this.$toast.success("Sukses Ditambahkan", {
                         type: "success",
                         position: "top-right",
@@ -251,15 +331,15 @@ export default {
                         dismissable: true,
                     });
                 })
-                .catch((err) => {
-                    console.log(err.response.data.msg)
-                    this.$toast.error(`${err.response.data.msg}`.toUpperCase(), {
-                        type: "error",
-                        position: "top-right",
-                        duration: 3000,
-                        dismissable: true,
-                    });
-                })
+                    .catch((err) => {
+                        console.log(err.response.data.msg)
+                        this.$toast.error(`${err.response.data.msg}`.toUpperCase(), {
+                            type: "error",
+                            position: "top-right",
+                            duration: 3000,
+                            dismissable: true,
+                        });
+                    })
             } else {
             }
         },
@@ -270,10 +350,6 @@ export default {
             const url =
                 "https://ibnux.github.io/data-indonesia/kabupaten/" + data + ".json";
             axios.get(url).then((response) => this.getKabupaten(response));
-
-            this.datadudi.alamat.kabupaten = '';
-            this.datadudi.alamat.kecamatan = '';
-            this.datadudi.alamat.desa = '';
         },
         getKabupaten(data) {
             this.kabupaten = data;
@@ -283,8 +359,6 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kecamatan/" + data + ".json";
             axios.get(url).then((response) => this.getKecamatan(response));
 
-            this.datadudi.alamat.kecamatan = '';
-            this.datadudi.alamat.desa = '';
         },
         getKecamatan(data) {
             this.kecamatan = data;
@@ -294,7 +368,6 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kelurahan/" + data + ".json";
             axios.get(url).then((response) => this.getDesa(response));
 
-            this.datadudi.alamat.desa = '';
         },
         getDesa(data) {
             this.desa = data;
@@ -302,11 +375,17 @@ export default {
         getDudiPembimbing(data) {
             this.DudiPembimbing = data;
         },
+        setTempatDudi(data){
+            this.dudi = data
+            console.log(this.dudi);
+        }
     },
     mounted() {
         axios
             .get("https://ibnux.github.io/data-indonesia/provinsi.json")
             .then((response) => this.dataProvinsi(response));
+        axios.get("http://localhost:2008/admin/findAllDudi",{withCredentials:true})
+            .then((r) => this.setTempatDudi(r.data.data))
 
     },
 };

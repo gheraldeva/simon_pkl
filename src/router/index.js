@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import('../views/DataDudiView.vue')
     },
     {
+      path: '/datapembimbingdudi',
+      name: 'datapembimbingdudi',
+      component: () => import('../views/DataPembimbingDudiView.vue')
+    },
+    {
       path: '/datajurusan',
       name: 'datajurusan',
       component: () => import('../views/DataJurusanView.vue')
@@ -60,6 +65,11 @@ const router = createRouter({
       component: () => import('../views/LaporanSiswa.vue')
     },
     {
+      path: '/laporansiswa/detail/:id',
+      name: 'laporansiswadetail',
+      component: () => import('../views/LaporanSiswaDetail.vue')
+    },
+    {
       path: '/tambahdatasiswa',
       name: 'tambahdatasiswa',
       component: () => import('../views/TambahDataSiswa.vue')
@@ -73,6 +83,11 @@ const router = createRouter({
       path: '/tambahdatadudi',
       name: 'tambahdatadudi',
       component: () => import('../views/TambahDataDudi.vue')
+    },
+    {
+      path: '/tambahdatapembimbingdudi',
+      name: 'tambahdatapembimbingdudi',
+      component: () => import('../views/TambahDataPembimbingDudi.vue')
     },
     {
       path: '/detaildudi/:id',

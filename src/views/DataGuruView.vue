@@ -1,7 +1,7 @@
 <template>
   <div class="bg-bgcolor overflow-x-clip">
     <Navbar />
-    <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
+    <router-link to="/tambahdataguru" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
       tag="button"><img src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
       <SideBar />

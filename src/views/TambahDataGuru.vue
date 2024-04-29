@@ -334,7 +334,8 @@ export default {
                     data:{
                         guru : this.Gurustate.dataguru,
                         alamat : this.alamatState.alamat
-                    }
+                    },
+                    withCredentials:true
                 }).then((r) => {
                     console.log(r);
                     
@@ -402,7 +403,7 @@ export default {
             this.jurusan = data
         },
         dataKelas() {
-            axios.get(`http://localhost:2008/admin//findKelasFilter?id_jurusan=${this.Gurustate.dataguru.id_jurusan}`)
+            axios.get(`http://localhost:2008/admin//findKelasFilter?id_jurusan=${this.Gurustate.dataguru.id_jurusan}`,{withCredentials:true})
                 .then((response) => this.getKelas(response.data))
         },
         getKelas(data) {
@@ -416,7 +417,7 @@ export default {
     mounted() {
         axios.get('https://ibnux.github.io/data-indonesia/provinsi.json')
             .then((response) => this.dataProvinsi(response))
-        axios.get('http://localhost:2008/admin/findAllJurusan')
+        axios.get('http://localhost:2008/admin/findAllJurusan',{withCredentials:true})
             .then((response) => this.getJurusan(response.data))
     },
 }

@@ -358,7 +358,8 @@ export default {
                     data:{
                         siswa : this.Siswastate.datasiswa,
                         alamat : this.alamatState.alamat
-                    }
+                    },
+                    withCredentials : true
                 }).then((r) => {
                     console.log(r);
                     
@@ -388,7 +389,7 @@ export default {
         },
         dataKabupaten(data) {
             const url = 'https://ibnux.github.io/data-indonesia/kabupaten/' + data + '.json'
-            axios.get(url)
+            axios.get(url )
                 .then((response) => this.getKabupaten(response))
 
             this.datasiswa.alamat.kabupaten = ''
@@ -426,7 +427,7 @@ export default {
             this.jurusan = data
         },
         dataKelas() {
-            axios.get(`http://localhost:2008/admin//findKelasFilter?id_jurusan=${this.Siswastate.datasiswa.id_jurusan}`)
+            axios.get(`http://localhost:2008/admin//findKelasFilter?id_jurusan=${this.Siswastate.datasiswa.id_jurusan}`,{withCredentials:true})
                 .then((response) => this.getKelas(response.data))
         },
         getKelas(data) {
@@ -438,11 +439,11 @@ export default {
 
     },
     mounted() {
-        axios.get('https://ibnux.github.io/data-indonesia/provinsi.json')
+        axios.get('https://ibnux.github.io/data-indonesia/provinsi.json',)
             .then((response) => this.dataProvinsi(response))
-        axios.get('http://localhost:2008/admin/findAllJurusan')
+        axios.get('http://localhost:2008/admin/findAllJurusan',{withCredentials:true})
             .then((response) => this.getJurusan(response.data))
-        axios.get('http://localhost:2008/admin/findAllGuruPembimbing')
+        axios.get('http://localhost:2008/admin/findAllGuruPembimbing',{withCredentials:true})
             .then((response) => this.getGuruPembimbing(response.data))
 
     },

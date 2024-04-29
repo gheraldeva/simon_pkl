@@ -122,7 +122,7 @@ export default {
       .then((r) => {
         this.setSiswa(r.data.data)
       })
-    
+
 
 
     // axios.get('http://localhost:2008/admin/findSiswaFilter?', null, {

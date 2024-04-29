@@ -46,6 +46,10 @@ import { RouterLink } from "vue-router";
             </li>
             <hr />
             <li>
+              <RouterLink to="/datapembimbingdudi">Data Pembimbing Dudi</RouterLink>
+            </li>
+            <hr />
+            <li>
               <RouterLink to="/datajurusan">Data Jurusan</RouterLink>
             </li>
             <hr />

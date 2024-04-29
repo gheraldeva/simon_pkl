@@ -1,11 +1,11 @@
 <template>
   <div class="bg-bgcolor overflow-x-clip">
     <Navbar />
-    <router-link to="/tambahdatadudi" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
+    <router-link to="/tambahdatapembimbingdudi" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
       tag="button"><img src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
       <SideBar />
-      <Banner>Data Dudi Pembimbing</Banner>
+      <Banner>Data Pembimbing Dudi</Banner>
       <div class="tabel">
         <div class="flex flex-col mt-52 mb-10 mx-20 ml-80 bg-white shadow-md p-24 relative">
           <div class="-m-5">
@@ -26,12 +26,12 @@
                         No
                       </th>
                       <th scope="col" class="px-4 py-2 text-start font-medium">
-                        Nama Dudi
+                        Nama Pembimbing Dudi
                       </th>
                       <th scope="col" class="px-4 py-2 text-start font-medium">
                         No. Telp
                       </th>
-                      <th scope="col" class="px-4 py-2 font-medium">Bidang</th>
+                      <th scope="col" class="px-4 py-2 font-medium">Jenis Kelamin</th>
                       <th scope="col" class="px-4 py-2 font-medium">
                         Alamat
                       </th>
@@ -39,7 +39,7 @@
                         Jumlah Siswa
                       </th>
                       <th scope="col" class="py-2 px-2 font-medium">
-                        Deskripsi
+                        Agama
                       </th>
                       <th scope="col" class="py-2 font-medium">Act</th>
                     </tr>
@@ -47,12 +47,12 @@
                   <tbody class="divide-y divide-black">
                     <tr v-for="(data, i) in dudies.data" class="divide-x-2 divide-black">
                       <td class="px-3 font-semibold">{{ i + 1 }}.</td>
-                      <td class="px-2 py-1">{{ data.nama_instansi_perusahaan }}</td>
+                      <td class="px-2 py-1">{{ data.nama }}</td>
                       <td class="px-4 py-1">{{ data.no_telepon }}</td>
-                      <td class="px-4 py-1">{{ data.bidang }}</td>
+                      <td class="px-4 py-1">{{ data.jenis_kelamin = "laki" ? "Laki - Laki" : "Perempuan" }}</td>
                       <td class="px-4 py-1">{{ data.alamat.detail_tempat }}</td>
                       <td class="px-12 py-1">{{ data.siswa.length }}</td>
-                      <td class="px-4 py-1">{{ data.deskripsi }}</td>
+                      <td class="px-4 py-1">{{ data.agama }}</td>
                       <td class="px-4 py-1 text-end">
                         <button type="button">
                           <ActionButtonDudi :datadudi="data" />
@@ -95,7 +95,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllDudi',{withCredentials:true})
+    axios.get('http://localhost:2008/admin/findAllPembimbingDudi',{withCredentials:true})
       .then((r) => this.setDudies(r.data))
   }
 }

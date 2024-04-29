@@ -10,7 +10,7 @@ import TableNavigation from "@/components/TableNavigation.vue";
 <template>
   <div class="bg-bgcolor overflow-x-clip">
     <Navbar />
-    <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50" tag="button"><img
+    <router-link to="/tambahdatajurusan" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50" tag="button"><img
                 src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
       <SideBar />
@@ -76,7 +76,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllJurusan')
+    axios.get('http://localhost:2008/admin/findAllJurusan',{withCredentials:true})
       .then((r) => this.setSiswa(r.data))
   }
 }

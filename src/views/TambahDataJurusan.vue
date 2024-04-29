@@ -45,6 +45,7 @@ import axios from "axios";
 import useValidate from "@vuelidate/core";
 import {
     required,
+    helpers
 } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
 
@@ -81,6 +82,7 @@ export default {
                     data: {
                         nama: this.Dudistate.datadudi.nama,
                     },
+                    withCredentials:true
                 }).then((r) => {
                     console.log(r);
                     

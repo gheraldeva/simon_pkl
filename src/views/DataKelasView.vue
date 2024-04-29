@@ -84,7 +84,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllKelas')
+    axios.get('http://localhost:2008/admin/findAllKelas',{withCredentials:true})
       .then((r) => this.setSiswa(r.data))
   }
 }

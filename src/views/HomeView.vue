@@ -32,9 +32,8 @@ export default {
       increment
     };
   },
-  mounted(){
-    axios.get("http://localhost:2008/admin/cekToken",{withCredentials : true})
-      .then((r) => console.log(r.data))
+  mounted() {
+    
   }
 };
 </script>

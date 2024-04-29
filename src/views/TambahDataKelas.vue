@@ -16,7 +16,7 @@
                         </label>
                         <input type="text" id="nama"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Nama Jurusan..." v-model="KelasState.datakelas.nama" />
+                            placeholder="Masukkan Nama Kelas..." v-model="KelasState.datakelas.nama" />
                     </div>
                     <p v-if="this.v$kelas.datakelas.nama.$error" class="pl-[25%] text-red-600">
                         {{
@@ -107,6 +107,7 @@ export default {
                         tahun : "2024/2025",
                         id_jurusan: this.KelasState.datakelas.id_jurusan,
                     },
+                    withCredentials:true
                 }).then((r) => {
                     console.log(r);
                     
@@ -135,7 +136,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('http://localhost:2008/admin/findAllJurusan')
+        axios.get('http://localhost:2008/admin/findAllJurusan',{withCredentials:true})
             .then((response) => this.getJurusan(response.data))
     }
 };
