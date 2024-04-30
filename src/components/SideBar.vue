@@ -98,14 +98,10 @@ import { RouterLink } from "vue-router";
           <ul v-if="visibleLaporan" class="list flex flex-col mt-3 gap-2">
             <hr />
             <li>
-              <RouterLink to="/">Kunjungan Guru</RouterLink>
-            </li>
-            <hr />
-            <li>
               <RouterLink to="/laporansiswa">Laporan Siswa PKL</RouterLink>
             </li>
             <hr />
-            <li>Laporan PKL</li>
+              <RouterLink to="/laporandudi">Laporan DU/DI PKL</RouterLink>
             <hr />
           </ul>
         </transition>

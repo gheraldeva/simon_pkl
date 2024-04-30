@@ -11,8 +11,8 @@ export default {
   beforeCreate(){
     axios.get("http://localhost:2008/admin/cekToken", { withCredentials: true })
       .then((r) => {
+        console.log(r.statusText);
         console.log(r.data)
-
       })
       .catch((err) => {
         if (err.response.status == 401) {
