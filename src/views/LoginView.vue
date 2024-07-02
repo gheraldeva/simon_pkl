@@ -3,8 +3,8 @@
         <Navbar />
         <div class="flex justify-center pt-24 pb-10">
             <div
-                class="w-[50vw] h-[80vh] flex justify-center items-center flex-col bg-white shadow-md rounded-lg relative">
-                <h1 class="text-left-linear font-bold text-4xl absolute top-10 left-14">Login</h1>
+                class="w-[40vw] h-[81vh] flex justify-center items-center flex-col bg-white shadow-md rounded-lg relative">
+                <h1 class="text-left-linear font-bold text-4xl absolute top-20 left-20">Login</h1>
                 <div class="input flex flex-col w-[70%] relative">
                     <div v-show="loginError" class="bg-red-400 p-5 absolute -top-12 rounded-md w-[100%] flex justify-center">
                         <p class="font-semibold">{{ loginError }}</p>
@@ -25,7 +25,7 @@
                     <p v-if="this.v$User.password.$error" class="pl-2 text-red-600">
                         {{ this.v$User.password.$errors[0].$message }}
                     </p>
-                    <button type="submit" class="w-24 h-12 rounded-lg bg-right-linear mt-5" @click="loginUser">Login</button>
+                    <button type="submit" class="w-24 h-12 rounded-lg bg-left-linear text-white font-semibold mt-5" @click="loginUser">Login</button>
                 </div>
             </div>
 

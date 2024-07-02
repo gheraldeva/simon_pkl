@@ -19,12 +19,16 @@
                 class="absolute right-7 -top-5 z-50 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-gray-200">
                 <div class="py-1">
                     <MenuItem v-slot="{ active }">
-                    <button @click="edit(datasiswa)"
+                    <button @click="editDudi(datadudi)"
                         :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'px-2 py-2 text-sm']">Edit</button>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
-                    <button @click="hapusData(datasiswa)"
+                    <button @click="hapusData(datadudi)"
                         :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'px-2 py-2 text-sm']">Delete</button>
+                    </MenuItem>
+                    <MenuItem v-slot="{ active }">
+                    <button @click="detailData(datadudi)"
+                        :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'px-2 py-2 text-sm']">Detail</button>
                     </MenuItem>
                 </div>
             </MenuItems>
@@ -40,19 +44,24 @@ export default {
     name: 'actionbutton',
     components: { Menu, MenuButton, MenuItem, MenuItems },
     props: [
-        'datasiswa'
+        'datadudi'
     ], methods: {
         hapusData(data) {
-            axios.delete('http://localhost:2008/admin/deleteKelas/' + data.id,{withCredentials:true})
+            axios.delete('http://localhost:2008/admin/deletePembimbingDudi/' + data.id,{withCredentials:true})
                 .then((r) => {
-                    this.$toast.success("SUKSES DIHAPUS", {
+                    console.log(r);
+                    this.$toast.success("Sukses Dihapus", {
                         type: "success",
                         position: "top-right",
                         duration: 3000,
                         dismissable: true,
                     });
+                    setTimeout(()=>{
+                        window.location.reload()
+                    },120)
                 })
                 .catch((err) => {
+                    console.log(err.response.data.msg)
                     this.$toast.error(`${err.response.data.msg}`.toUpperCase(), {
                         type: "error",
                         position: "top-right",
@@ -60,19 +69,12 @@ export default {
                         dismissable: true,
                     });
                 })
-
-            setTimeout(() => {
-
-            },3000)
-            window.location.reload()
-
-
         },
         detailData(data) {
-            window.location.href = `/detailsiswa/${data.id}`;
+            window.location.href = `/detaildudi/${data.id}`;
         },
-        edit(data) {
-            window.location.href = `/editsiswa/${data.id}`;
+        editDudi(data) {
+            window.location.href = `/editpembimbingdudi/${data.id}`;
         },
     }
 }

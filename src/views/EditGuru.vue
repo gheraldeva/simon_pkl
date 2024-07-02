@@ -15,7 +15,7 @@
                         </label>
                         <input type="text" id="nama"
                             class="shadow-sm border bg-white text-gray-900 text-sm rounded-lg w-full p-2.5"
-                            placeholder="Masukkan Nama Instansi Perusahaan..."
+                            placeholder="Masukkan Nama Guru..."
                             v-model="Gurustate.dataguru.nama" />
                     </div>
                     <p v-if="this.v$Guru.dataguru.nama.$error" class="pl-[25%]">
@@ -244,14 +244,23 @@ export default {
                     method: "put",
                     url: ("http://localhost:2008/admin/updateGuruPembimbing/" + this.$route.params.id),
                     data: this.Gurustate.dataguru,
-                }).then((r) => console.log(r));
-                window.location.href = "/dataguru";
-                this.$toast.success("Sukses Di Edit", {
-                    type: "success",
-                    position: "top-right",
-                    duration: 3000,
-                    dismissable: true,
-                });
+                    withCredentials:true
+                }).then((r) => {
+                    this.$router.push({ path: '/dataguru' })
+                    this.$toast.success("Sukses Di Edit", {
+                        type: "success",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    });
+                }).catch((err)=>{
+                    this.$toast.error(err.response.msg, {
+                        type: "error",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    });
+                })
             } else {
             }
         },
@@ -278,8 +287,6 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kecamatan/" + data + ".json";
             axios.get(url).then((response) => this.getKecamatan(response));
 
-            // this.dataguru.alamat.kecamatan = '';
-            // this.dataguru.alamat.desa = '';
         },
         getKecamatan(data) {
             this.kecamatan = data;
@@ -289,7 +296,6 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kelurahan/" + data + ".json";
             axios.get(url).then((response) => this.getDesa(response));
 
-            // this.dataguru.alamat.desa = '';
         },
         getDesa(data) {
             this.desa = data;
@@ -302,7 +308,7 @@ export default {
         axios
             .get("https://ibnux.github.io/data-indonesia/provinsi.json")
             .then((response) => this.dataProvinsi(response));
-        axios.get('http://localhost:2008/admin/findGuruPembimbing/' + this.$route.params.id)
+        axios.get('http://localhost:2008/admin/findGuruPembimbing/' + this.$route.params.id , {withCredentials:true})
             .then((r) => this.setDudi(r.data.data))
 
     },

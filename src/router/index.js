@@ -65,9 +65,19 @@ const router = createRouter({
       component: () => import('../views/LaporanSiswa.vue')
     },
     {
+      path: '/laporandudi',
+      name: 'laporandudi',
+      component: () => import('../views/LaporanDudi.vue')
+    },
+    {
       path: '/laporansiswa/detail/:id',
       name: 'laporansiswadetail',
       component: () => import('../views/LaporanSiswaDetail.vue')
+    },
+    {
+      path: '/laporandudi/detail/:id',
+      name: 'laporandudidetail',
+      component: () => import('../views/LaporanDudiDetail.vue')
     },
     {
       path: '/tambahdatasiswa',
@@ -100,9 +110,19 @@ const router = createRouter({
       component: () => import('../views/EditDudi.vue')
     },
     {
+      path: '/editpembimbingdudi/:id',
+      name: 'editpembimbingdudi',
+      component: () => import('../views/EditPembimbingDudi.vue')
+    },
+    {
       path: '/detailsiswa/:id',
       name: 'detailsiswaview',
       component: () => import('../views/DetailSiswaView.vue')
+    },
+    {
+      path: '/detailpembimbingudi/:id',
+      name: 'detailpembimbingudiview',
+      component: () => import('../views/DetailPembimbingDudiView.vue')
     },
     {
       path: '/editsiswa/:id',
@@ -133,6 +153,16 @@ const router = createRouter({
       path: '/editalamatdudi/:id',
       name: 'editalamatdudi',
       component: () => import('../views/EditAlamatDudi.vue')
+    },
+    {
+      path: '/editalamatpembimbingdudi/:id',
+      name: 'editalamatpembimbingdudi',
+      component: () => import('../views/EditAlamatPembimbingDudi.vue')
+    },
+    {
+      path: '/absensiswa',
+      name: 'absensiswa',
+      component: () => import('../views/AbsenSiswa.vue')
     },
     
   ]

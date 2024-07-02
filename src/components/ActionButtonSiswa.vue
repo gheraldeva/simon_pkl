@@ -47,7 +47,7 @@ export default {
         'datasiswa'
     ], methods: {
         hapusData(data) {
-            axios.delete('http://localhost:2008/admin/deleteSiswa/' + data.id)
+            axios.delete('http://localhost:2008/admin/deleteSiswa/' + data.id,{withCredentials:true})
             .then((r) => {
                     console.log(r);
                     

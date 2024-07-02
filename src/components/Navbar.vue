@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-[10vh] fixed z-50 w-screen bg-gradient-to-r px-16 from-left-linear to-right-linear flex justify-between items-center">
+    class="h-[10vh] fixed z-30 w-screen bg-gradient-to-r px-16 from-left-linear to-right-linear flex justify-between items-center">
     <div class="flex gap-2 items-center">
       <img src="../assets/logo.png" alt="" width="70vw" />
       <div class="flex flex-col">
@@ -11,7 +11,10 @@
       </div>
     </div>
     <div class="flex gap-5">
-      <img src="../assets/notif.svg" alt="" />
+      <select name="tahun" id="tahun" class="text-white bg-right-linear font-bold border border-white rounded-md p-2 hover:bg-left-linear cursor-pointer" @change="pilihTahun()" v-model="now_tahun">
+        <option value="" disabled>Pilih Tahun</option>
+        <option  v-for="t in tahun" :value="t.id">{{ t.tahun }}</option>
+      </select>
       <div class="flex gap-1">
         <Menu as="div" class="relative z-20 text-left">
           <div>
@@ -30,7 +33,7 @@
             enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
             leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
             leave-to-class="transform opacity-0 scale-95">
-            <MenuItems class="absolute top-[100%] z-50 origin-top-right divide-y divide-white rounded-md bg-white">
+            <MenuItems class="absolute top-[100%] z-50  origin-top-right divide-y divide-white rounded-md bg-white">
               <div class="py-1">
                 <MenuItem v-slot="{ active }">
                 <button @click="goTo('login')"
@@ -54,8 +57,16 @@
 import { RouterLink } from "vue-router";
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import axios from "axios";
+import { useTahunStore } from "@/stores/tahun";
 
 export default {
+  data(){
+    return{
+      tahun: [],
+      now_tahun: '',
+      tahunStore: useTahunStore()
+    }
+  },
   name: 'navbar',
   components: { RouterLink, Menu, MenuButton, MenuItems, MenuItem },
   methods: {
@@ -82,7 +93,21 @@ export default {
             dismissable: true,
           });
         })
+    },
+    pilihTahun(){
+      this.tahunStore.ubahTahun(this.now_tahun)
+      this.now_tahun = this.tahunStore.tahun
+      this.$emit('navulang')
     }
-  }
+  },
+  mounted(){
+    this.now_tahun = this.tahunStore.tahun
+    axios.get("http://localhost:2008/admin/getAllTahun", {withCredentials:true})
+      .then((r) => this.tahun = r.data.data)
+  },
+
+
 }
+
 </script>
+

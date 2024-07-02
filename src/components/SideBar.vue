@@ -74,7 +74,7 @@ import { RouterLink } from "vue-router";
           <ul v-if="visiblePKL" class="list flex flex-col mt-3 gap-2">
             <hr />
             <li>
-              <RouterLink to="/">Kunjungan Guru</RouterLink>
+              <RouterLink to="/absensiswa">Absen Siswa</RouterLink>
             </li>
             <hr />
             <li>Laporan Siswa PKL</li>

@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[83%] bg-slate-60 fixed h-20 flex justify-end mt-[10vh] ml-64 z-30">
+    <div class="w-[83%] bg-slate-60 fixed h-20 flex justify-end mt-[10vh] ml-64 z-20">
         <div class="w-full h-full bg-white absolute backdrop-blur-sm backdrop-invert-0 bg-white/50">
         </div>
         <div class="w-[50%] bg-white"></div>

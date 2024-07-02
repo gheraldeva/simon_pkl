@@ -3,7 +3,7 @@
         <Navbar />
         <div class="flex">
             <SideBar />
-            <Banner>Tambah Data Guru</Banner>
+            <Banner>Edit Alamat Siswa</Banner>
             <div class="flex flex-col min-w-[75vw] mt-52 mb-10 mx-10 ml-80 bg-white shadow-md px-8 pt-8 pb-18 relative">
                 <h1 class="font-semibold text-xl pl-5 mb-5">Tambah Data</h1>
                 <hr class=" border-t-2">
@@ -62,7 +62,8 @@
                             <select name="desa" id="desa_select" v-model="alamatState.alamat.desa"
                                 class="w-[76%] p-2 border-2 rounded-lg cursor-pointer">
                                 <option value="" disabled>Pilih Desa</option>
-                                <option :value="desa.nama" v-for="(desa, index) in desa.data" :key="index">{{ desa.nama }}
+                                <option :value="desa.nama" v-for="(desa, index) in desa.data" :key="index">{{ desa.nama
+                                    }}
                                 </option>
                             </select>
                         </div>
@@ -170,11 +171,19 @@ export default {
                 axios({
                     method: "PUT",
                     url: ("http://localhost:2008/admin/updateGuruPembimbing/alamat/" + this.$route.params.id),
-                    data:this.alamatState.alamat
-                }).then((r)=>console.log(r))
-                window.location.href = `/editguru/${this.$route.params.id}`
+                    data: this.alamatState.alamat,
+                    withCredentials: true
+                }).then((r) => {
+                    this.$router.push({ path: `/editguru/${this.$route.params.id}` })
+                    this.$toast.success("Sukses Di Edit", {
+                        type: "success",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    });
+                })
             } else {
-                
+
             }
         },
         dataProvinsi(data) {

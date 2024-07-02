@@ -202,14 +202,23 @@ export default {
                     method: "put",
                     url: ("http://localhost:2008/admin/updateDudi/" + this.$route.params.id),
                     data: this.Dudistate.datadudi,
-                }).then((r) => console.log(r));
-                window.location.href = "/datadudi";
-                this.$toast.success("Sukses Di Edit", {
-                    type: "success",
-                    position: "top-right",
-                    duration: 3000,
-                    dismissable: true,
-                });
+                    withCredentials:true
+                }).then((r) => {
+                    this.$router.push({ path: '/datadudi' })
+                    this.$toast.success("Sukses Di Edit", {
+                        type: "success",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    })
+                }).catch((err) => {
+                    this.$toast.error(err.response.msg, {
+                        type: "error",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    })
+                })
             } else {
             }
         },
@@ -221,7 +230,7 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kabupaten/" + data + ".json";
             axios.get(url).then((response) => this.getKabupaten(response));
 
-            // this.datadudi.alamat.kabupaten = '';
+            
             // this.datadudi.alamat.kecamatan = '';
             // this.datadudi.alamat.desa = '';
         },
@@ -233,7 +242,7 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kecamatan/" + data + ".json";
             axios.get(url).then((response) => this.getKecamatan(response));
 
-            // this.datadudi.alamat.kecamatan = '';
+           
             // this.datadudi.alamat.desa = '';
         },
         getKecamatan(data) {
@@ -244,7 +253,7 @@ export default {
                 "https://ibnux.github.io/data-indonesia/kelurahan/" + data + ".json";
             axios.get(url).then((response) => this.getDesa(response));
 
-            // this.datadudi.alamat.desa = '';
+           
         },
         getDesa(data) {
             this.desa = data;
@@ -257,7 +266,7 @@ export default {
         axios
             .get("https://ibnux.github.io/data-indonesia/provinsi.json")
             .then((response) => this.dataProvinsi(response));
-        axios.get('http://localhost:2008/admin/findDudi/' + this.$route.params.id)
+        axios.get('http://localhost:2008/admin/findDudi/' + this.$route.params.id,{withCredentials:true})
             .then((r) => this.setDudi(r.data.data))
 
     },

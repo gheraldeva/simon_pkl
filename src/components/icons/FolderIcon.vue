@@ -2,7 +2,7 @@
     <svg width="35" height="29" viewBox="0 0 35 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
             d="M35 8.7V26.1C35 27.7023 33.4338 29 31.5 29H3.5C1.56625 29 0 27.7023 0 26.1V2.9C0 1.29775 1.56625 0 3.5 0H14C15.9338 0 17.5 1.29775 17.5 2.9V4.35C17.5 5.1504 18.284 5.8 19.25 5.8H31.5C33.4338 5.8 35 7.09775 35 8.7Z"
-            fill="#928888" />
+            fill="#FFFFFF" />
     </svg>
 
 </template>

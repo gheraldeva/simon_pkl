@@ -6,12 +6,13 @@ import ActionButtonSiswa from "@/components/ActionButtonSiswa.vue";
 import TableNavigationSiswa from "@/components/TableNavigationSiswa.vue";
 import TrueIcon from "@/components/icons/TrueIcon.vue";
 import FalseIcon from "@/components/icons/FalseIcon.vue";
+import Pagination from "@/components/Pagination.vue"
 
 </script>
 
 <template>
   <div class="bg-bgcolor overflow-x-clip">
-    <Navbar />
+    <Navbar @navulang="gantiTahun" />
     <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
       tag="button"><img src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
@@ -22,7 +23,6 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
         <div class="flex flex-col mt-52 mb-10 mx-10 ml-72 bg-white shadow-md p-16 relative">
           <div class="-m-5">
             <div class="p-1.5 min-w-full align-middle">
-              <TableNavigationSiswa @send-url="SendUrl" :siswa_url="siswa_url" @search="carinama" />
 
               <div class="border-2 border-black">
                 <table class="min-w-full divide-y divide-black">
@@ -76,6 +76,8 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
               </div>
             </div>
           </div>
+
+          <Pagination class="mt-10" :count-page="countPage" @ambil-page="gantiPage" />
         </div>
       </div>
     </div>
@@ -84,15 +86,36 @@ import FalseIcon from "@/components/icons/FalseIcon.vue";
 
 <script>
 import axios from "axios";
+import { useTahunStore } from "@/stores/tahun";
 
 export default {
   data() {
     return {
       siswa: [],
       siswa_url: 'http://localhost:2008/admin/findSiswaFilter?',
+      tahunStore: useTahunStore(),
+      countPage: '',
+      pageNow: ''
     }
   },
   methods: {
+    gantiPage(i){
+      axios.get(`http://localhost:2008/admin/findSiswaFilter?page=${i}&tahun=${this.tahunStore.tahun}`,{withCredentials : true})
+      .then((r) => {
+        console.log(r.data.data);
+        this.setSiswa(r.data.data)
+      })
+      this.pageNow = i
+    },
+    gantiTahun(){
+      console.log(this.tahunStore.tahun);
+      axios.get(`http://localhost:2008/admin/findSiswaFilter?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials : true})
+      .then((r) => {
+        console.log(r.data.data);
+        this.setSiswa(r.data.data)
+      })
+
+    },
     setSiswa(data) {
 
       this.siswa = data
@@ -101,7 +124,7 @@ export default {
     SendUrl(query) {
       // console.log(query);
       if (query) {
-        axios.get('http://localhost:2008/admin/findSiswaFilter?', {
+        axios.get(`http://localhost:2008/admin/findSiswaFilter?page=1&tahun=${this.tahunStore.tahun}`, {
           withCredentials : true,
           params: {
             jenis_kelamin : query.jenis_kelamin,
@@ -118,8 +141,12 @@ export default {
     }
   },
   mounted() {
-    axios.get(this.siswa_url,{withCredentials : true})
+    console.log(this.tahunStore.tahun);
+    this.now_tahun = this.tahunStore.tahun
+    axios.get(`http://localhost:2008/admin/findSiswaFilter?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials : true})
       .then((r) => {
+        // console.log(r.data.data.countPage);
+        this.countPage = r.data.data.countPage
         this.setSiswa(r.data.data)
       })
 
@@ -132,7 +159,8 @@ export default {
     // })
     //   .then((r) => console.log(r))
 
-  }
+  },
+  
 }
 
 

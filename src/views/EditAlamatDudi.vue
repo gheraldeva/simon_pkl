@@ -111,7 +111,7 @@ import { required, numeric, minLength, maxLength, helpers } from '@vuelidate/val
 import { reactive, computed, toRef } from "vue";
 
 export default {
-    name: "tambahdatadudi",
+    name: "editdatadudi",
     components: { Navbar, SideBar, Banner },
     setup() {
         const alamatState = reactive({
@@ -169,9 +169,25 @@ export default {
                 this.alamatState.alamat.kecamatan = this.alamatState.alamat.kecamatan.nama
                 axios({
                     method: "PUT",
-                    url: ("http://localhost:2008/admin/updatePembimbingDudi/alamat/" + this.$route.params.id),
-                    data:this.alamatState.alamat
-                }).then((r)=>console.log(r))
+                    url: ("http://localhost:2008/admin/updateDudi/alamat/" + this.$route.params.id),
+                    data:this.alamatState.alamat,
+                    withCredentials:true
+                }).then((r) => {
+                    this.$router.push({ path: '/datapembimbingdudi' })
+                    this.$toast.success("Sukses Di Edit", {
+                        type: "success",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    })
+                }).catch((err) => {
+                    this.$toast.error(err.response.msg, {
+                        type: "error",
+                        position: "top-right",
+                        duration: 3000,
+                        dismissable: true,
+                    })
+                })
                 // window.location.href = `/editdudi/${this.$route.params.id}`
             } else {
                 
@@ -182,7 +198,7 @@ export default {
         },
         dataKabupaten(data) {
             const url = 'https://ibnux.github.io/data-indonesia/kabupaten/' + data + '.json'
-            axios.get(url,{withCredentials : true})
+            axios.get(url)
                 .then((response) => this.getKabupaten(response))
 
 

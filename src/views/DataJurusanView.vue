@@ -40,7 +40,7 @@ import TableNavigation from "@/components/TableNavigation.vue";
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-black">
-                    <tr v-for="(data, index) in siswa.data" class="divide-x-2 divide-black">
+                    <tr v-for="(data, index) in siswa" class="divide-x-2 divide-black">
                       <td class="px-4 font-semibold">{{ index + 1 }}.</td>
                       <td class="px-2 py-1 text-nowrap">{{ data.nama }}</td>
                       <td class="px-1 py-1 text-end">
@@ -62,22 +62,24 @@ import TableNavigation from "@/components/TableNavigation.vue";
 
 <script>
 import axios from "axios";
+import { useTahunStore } from "@/stores/tahun";
 
 export default {
   data() {
     return {
-      siswa: []
+      siswa: [],
+      tahunStore: useTahunStore()
     }
   },
   methods: {
     setSiswa(data) {
       this.siswa = data
-      // console.log(this.siswa);
+      console.log(this.siswa);
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllJurusan',{withCredentials:true})
-      .then((r) => this.setSiswa(r.data))
+    axios.get(`http://localhost:2008/admin/findAllJurusan?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
+      .then((r) => this.setSiswa(r.data.data))
   }
 }
 

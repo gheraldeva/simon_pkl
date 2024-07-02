@@ -237,6 +237,7 @@ import axios from "axios";
 import useValidate from '@vuelidate/core'
 import { required, numeric, minLength, maxLength, helpers } from '@vuelidate/validators'
 import { reactive, computed, toRef } from "vue";
+import { useTahunStore } from "@/stores/tahun";
 
 export default {
     name: "tambahdatasiswa",
@@ -253,6 +254,7 @@ export default {
                 id_kelas: '',
                 no_telepon: '',
                 id_guru_pembimbing: '',
+                id_tahun: ''
             }
 
         })
@@ -274,14 +276,14 @@ export default {
             return {
                 datasiswa: {
                     nama: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
-                    nis: { required : helpers.withMessage('Data Tidak Boleh Kosong',required), numeric ,maxLength : helpers.withMessage('NIS Tidak Boleh Lebih dari 9 Digit',maxLength(9)) },
+                    nis: { required : helpers.withMessage('Data Tidak Boleh Kosong',required), maxLength : helpers.withMessage('NIS Tidak Boleh Lebih dari 9 Digit',maxLength(9)) },
                     jenis_kelamin: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
                     // agama: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
                     password: {
                         required : helpers.withMessage('Data Tidak Boleh Kosong',required),
                         minLength: minLength(8),
-                        containNumber: helpers.withMessage('Password Harus Mengandung Angka', containNumber),
-                        containALphabet: helpers.withMessage('Password Harus Mengandung huruf', containALphabet)
+                        // containNumber: helpers.withMessage('Password Harus Mengandung Angka', containNumber),
+                        // containALphabet: helpers.withMessage('Password Harus Mengandung huruf', containALphabet)
                     },
                     id_jurusan: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
                     id_kelas: { required : helpers.withMessage('Data Tidak Boleh Kosong',required) },
@@ -314,6 +316,7 @@ export default {
     },
     data() {
         return {
+            tahunStore: useTahunStore(),
             provinsi: [],
             kabupaten: [],
             kecamatan: [],
@@ -351,6 +354,8 @@ export default {
                 this.alamatState.alamat.provinsi = this.alamatState.alamat.provinsi.nama
                 this.alamatState.alamat.kabupaten = this.alamatState.alamat.kabupaten.nama
                 this.alamatState.alamat.kecamatan = this.alamatState.alamat.kecamatan.nama
+                this.Siswastate.datasiswa.nis = this.Siswastate.datasiswa.nis.toString()
+                this.Siswastate.datasiswa.id_tahun = this.tahunStore.tahun
 
                 axios({
                     method:'post',
@@ -427,7 +432,7 @@ export default {
             this.jurusan = data
         },
         dataKelas() {
-            axios.get(`http://localhost:2008/admin//findKelasFilter?id_jurusan=${this.Siswastate.datasiswa.id_jurusan}`,{withCredentials:true})
+            axios.get(`http://localhost:2008/admin//findKelasFilter?id_jurusan=${this.Siswastate.datasiswa.id_jurusan}&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
                 .then((response) => this.getKelas(response.data))
         },
         getKelas(data) {
@@ -441,9 +446,9 @@ export default {
     mounted() {
         axios.get('https://ibnux.github.io/data-indonesia/provinsi.json',)
             .then((response) => this.dataProvinsi(response))
-        axios.get('http://localhost:2008/admin/findAllJurusan',{withCredentials:true})
+        axios.get('http://localhost:2008/admin/findAllJurusan?tahun=' + this.tahunStore.tahun,{withCredentials:true})
             .then((response) => this.getJurusan(response.data))
-        axios.get('http://localhost:2008/admin/findAllGuruPembimbing',{withCredentials:true})
+        axios.get(`http://localhost:2008/admin/findAllGuruPembimbing?noPage=true&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
             .then((response) => this.getGuruPembimbing(response.data))
 
     },

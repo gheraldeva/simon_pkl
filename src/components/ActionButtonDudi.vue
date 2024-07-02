@@ -47,7 +47,7 @@ export default {
         'datadudi'
     ], methods: {
         hapusData(data) {
-            axios.delete('http://localhost:2008/admin/deleteDudi/' + data.id)
+            axios.delete('http://localhost:2008/admin/deleteDudi/' + data.id,{withCredentials:true})
                 .then((r) => {
                     console.log(r);
                     this.$toast.success("Sukses Dihapus", {
@@ -66,8 +66,6 @@ export default {
                         dismissable: true,
                     });
                 })
-
-            window.location.reload()
         },
         detailData(data) {
             window.location.href = `/detaildudi/${data.id}`;

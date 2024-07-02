@@ -70,11 +70,13 @@ import TableNavigation from "@/components/TableNavigation.vue";
 <script>
 import axios from "axios";
 import ActionButtonKelas from "@/components/ActionButtonKelas.vue";
+import { useTahunStore } from "@/stores/tahun";
 
 export default {
   data() {
     return {
-      siswa: []
+      siswa: [],
+      tahunStore: useTahunStore()
     }
   },
   methods: {
@@ -84,7 +86,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllKelas',{withCredentials:true})
+    axios.get('http://localhost:2008/admin/findAllKelas?tahun=' + this.tahunStore.tahun,{withCredentials:true})
       .then((r) => this.setSiswa(r.data))
   }
 }

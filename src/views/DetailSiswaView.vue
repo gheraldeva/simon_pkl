@@ -19,11 +19,11 @@
                 </div>
                 <div class="flex flex-row gap-10 w-[100%]">
                     <p class="w-[30%] text-right font-medium text-lg text-nowrap">Jurusan : </p>
-                    <p class="w-[70%] text-lg font-bold">{{ dudies.jurusan }}</p>
+                    <p class="w-[70%] text-lg font-bold">{{ jurusan }}</p>
                 </div>
                 <div class="flex flex-row gap-10 w-[100%]">
                     <p class="w-[30%] text-right font-medium text-lg text-nowrap">Kelas : </p>
-                    <p class="w-[70%] text-lg font-bold">{{ dudies.kelas }}</p>
+                    <p class="w-[70%] text-lg font-bold">{{ kelas }}</p>
                 </div>
                 <div class="flex flex-row gap-10 w-[100%]">
                     <p class="w-[30%] text-right font-medium text-lg text-nowrap">Jenis Kelamin : </p>
@@ -75,13 +75,17 @@ export default {
   data() {
     return {
       dudies: {},
-      alamat : {}
+      alamat : {},
+      jurusan : '',
+      kelas : ''
     }
   },
   methods: {
     setDudies(data) {
       this.dudies = data
       this.alamat = data.alamat
+      this.jurusan = data.jurusan.nama
+      this.kelas = data.kelas.nama
     },
     editData(){
         console.log(this.dudies.id);

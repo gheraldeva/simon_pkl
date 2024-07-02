@@ -1,6 +1,6 @@
 <template>
   <div class="bg-bgcolor overflow-x-clip">
-    <Navbar />
+    <Navbar @navulang="gantiTahun" />
     <router-link to="/tambahdataguru" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
       tag="button"><img src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
@@ -41,7 +41,7 @@
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-black">
-                    <tr v-for="(data,index) in guru.data" class="divide-x-2 divide-black">
+                    <tr v-for="(data,index) in guru" class="divide-x-2 divide-black">
                       <td class="px-4 font-semibold">{{ index+1 }}.</td>
                       <td class="px-2 py-1 text-nowrap">{{data.nama}}</td>
                       <td class="px-2 py-1">{{data.no_telepon}}</td>
@@ -72,6 +72,7 @@ import SideBar from "@/components/SideBar.vue";
 import ActionButtonGuru from "@/components/ActionButtonGuru.vue";
 import Banner from "@/components/Banner.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
+import { useTahunStore } from "@/stores/tahun";
 
 
 export default {
@@ -79,7 +80,8 @@ export default {
   components: {Navbar,SideBar,ActionButtonGuru,Banner,TableNavigation},
   data() {
     return {
-      guru: []
+      guru: [],
+      tahunStore: useTahunStore()
     }
   },
   methods: {
@@ -87,14 +89,16 @@ export default {
       
       this.guru = data
       console.log(this.guru);
+    },
+    gantiTahun(){
+      axios.get(`http://localhost:2008/admin/findAllGuruPembimbing?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials: true})
+      .then((r) => this.setGuru(r.data.data.guruPembimbing))
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllGuruPembimbing',{withCredentials: true})
-      .then((r) => this.setGuru(r.data))
-
-    
-  }
+    axios.get(`http://localhost:2008/admin/findAllGuruPembimbing?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials: true})
+      .then((r) => this.setGuru(r.data.data.guruPembimbing))
+    }
 }
 
 

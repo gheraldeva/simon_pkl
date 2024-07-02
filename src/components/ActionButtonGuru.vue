@@ -47,7 +47,7 @@ export default {
         'dataguru'
     ], methods: {
         hapusData(data) {
-            axios.delete('http://localhost:2008/admin/deleteGuruPembimbing/' + data.id)
+            axios.delete('http://localhost:2008/admin/deleteGuruPembimbing/' + data.id,{withCredentials:true})
                 .then((r) => {
                     this.$toast.success("Sukses Dihapus", {
                         type: "success",

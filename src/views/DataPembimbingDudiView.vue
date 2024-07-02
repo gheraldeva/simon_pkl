@@ -1,6 +1,6 @@
 <template>
   <div class="bg-bgcolor overflow-x-clip">
-    <Navbar />
+    <Navbar @navulang="gantiTahun" />
     <router-link to="/tambahdatapembimbingdudi" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
       tag="button"><img src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
@@ -45,7 +45,7 @@
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-black">
-                    <tr v-for="(data, i) in dudies.data" class="divide-x-2 divide-black">
+                    <tr v-for="(data, i) in dudies" class="divide-x-2 divide-black">
                       <td class="px-3 font-semibold">{{ i + 1 }}.</td>
                       <td class="px-2 py-1">{{ data.nama }}</td>
                       <td class="px-4 py-1">{{ data.no_telepon }}</td>
@@ -55,7 +55,7 @@
                       <td class="px-4 py-1">{{ data.agama }}</td>
                       <td class="px-4 py-1 text-end">
                         <button type="button">
-                          <ActionButtonDudi :datadudi="data" />
+                          <ActionButtonPembimbingDudi :datadudi="data" />
                         </button>
                       </td>
                     </tr>
@@ -75,28 +75,35 @@
 import axios from "axios";
 import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
-import ActionButtonDudi from "@/components/ActionButtonDudi.vue";
 import Banner from "@/components/Banner.vue";
 import TambahData from "@/components/TambahData.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
+import ActionButtonPembimbingDudi from "@/components/ActionButtonPembimbingDudi.vue";
+import { useTahunStore } from "@/stores/tahun";
 
 
 export default {
   name : 'datadudi',
-  components : {Navbar,SideBar,ActionButtonDudi,Banner,TambahData,TableNavigation},
+  components : {Navbar,SideBar,ActionButtonPembimbingDudi,Banner,TambahData,TableNavigation},
   data() {
     return {
-      dudies: []
+      dudies: [],
+      tahunStore: useTahunStore()
     }
   },
   methods: {
     setDudies(data) {
       this.dudies = data
+      console.log(this.dudies);
+    },
+    gantiTahun(){
+      axios.get(`http://localhost:2008/admin/findAllPembimbingDudi?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
+      .then((r) => this.setDudies(r.data.data))
     }
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllPembimbingDudi',{withCredentials:true})
-      .then((r) => this.setDudies(r.data))
+    axios.get(`http://localhost:2008/admin/findAllPembimbingDudi?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
+      .then((r) => this.setDudies(r.data.data))
   }
 }
 

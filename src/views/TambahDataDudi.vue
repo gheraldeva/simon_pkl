@@ -241,8 +241,6 @@ export default {
                     },
                     withCredentials:true
                 }).then((r) => {
-                    console.log(r);
-                    
                     this.$router.push({ path: "/datadudi" });
                     this.$toast.success("Sukses Ditambahkan", {
                         type: "success",

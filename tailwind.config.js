@@ -13,7 +13,8 @@ export default {
         'card-color' : '#1B1D2A',
         'hr-color' : '#262837',
         'bgcolor' : '#EAEAEA',
-        'gray-figma' : '#F8F8F8'
+        'gray-figma' : '#F8F8F8',
+        'modalbg' : 'rgba(0,0,0,0.4)'
       },
       spacing : {
         '18' : '4.5rem',

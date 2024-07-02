@@ -43,7 +43,7 @@ export default {
         'datasiswa'
     ], methods: {
         hapusData(data) {
-            axios.delete('http://localhost:2008/admin/deleteJurusan/' + data.id)
+            axios.delete('http://localhost:2008/admin/deleteJurusan/' + data.id,{withCredentials:true})
                 .then((r) => {
                     this.$toast.success("SUKSES DIHAPUS", {
                         type: "success",
@@ -61,7 +61,7 @@ export default {
                     });
                 })
 
-            window.location.reload()
+            // window.location.reload()
 
 
         },
