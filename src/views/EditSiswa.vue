@@ -145,6 +145,7 @@ import {
     helpers,
 } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
+import { useTahunStore } from "@/stores/tahun";
 
 export default {
     name: "tambahdatadudi",
@@ -206,6 +207,7 @@ export default {
                 negara : 'Indonesia',
                 detail_tempat : ''
             },
+            tahunStore: useTahunStore()
         };
     },
     methods: {
@@ -311,15 +313,15 @@ export default {
             this.kelas = data
         }
     },
-   async mounted() {
+    mounted() {
         axios
             .get("https://ibnux.github.io/data-indonesia/provinsi.json")
             .then((response) => this.dataProvinsi(response));
-        await axios.get('http://localhost:2008/admin/findSiswa/' + this.$route.params.id,{withCredentials:true})
+        axios.get('http://localhost:2008/admin/findSiswa/' + this.$route.params.id,{withCredentials:true})
             .then((r) =>{ this.setSiswa(r.data.data)
                 this.getKelas(r.data.data.kelas)
             })
-        axios.get('http://localhost:2008/admin/findAllJurusan',{withCredentials:true})
+        axios.get(`http://localhost:2008/admin/findAllJurusan?tahun=${this.tahunStore.tahun}`,{withCredentials:true})
             .then((r)=> {
                  this.getJurusan(r.data.data)
                 })

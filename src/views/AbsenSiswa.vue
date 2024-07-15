@@ -54,7 +54,7 @@
                                             <div
                                                 class="h-full flex items-center justify-center px-2 col-start-6 col-span-6">
                                                 <div class="bg-green-500 p-1 w-[50%] rounded-md text-center text-white">
-                                                    {{ option.status.toUpperCase() }}</div>
+                                                    {{ option.status }}</div>
                                             </div>
                                             <div
                                                 class="h-full flex items-center col-start-12 col-span-1 justify-center hover:bg-white">
@@ -66,24 +66,24 @@
                                                             fill="black" />
                                                     </svg>
                                                 </button>
-                                                <Modal :open="modalOpen" @close="modalOpen = !modalOpen">
-                                                    <div class="w-full flex flex-col justify-center items-center font-semibold">
-                                                        <img :src="options.foto" alt="" class="w-[60%] shadow-lg">
-                                                        <p>Tanggal : {{ option.tanggal }}</p>
-                                                        <p class="">Absen Masuk : {{ option.absen_masuk == null ? "-" : option.absen_masuk }}</p>
-                                                        <p class="">Absen Keluar : {{ option.absen_keluar == null ? "-" : option.absen_keluar }}</p>
-                                                        <p>Status Absen Pulang : {{ option.status_absen_pulang == null ? "-" : option.status_absen_pulang }}</p>
-                                                        <p>Status : {{ option.status.toUpperCase() }}</p>
-                                                    </div>
-                                                </Modal>
-
+                                                
                                             </div>
-
+                                            
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
+                        <Modal :open="modalOpen" @close="modalOpen = !modalOpen">
+                            <div class="w-full flex flex-col  items-center font-semibold pt-[20px]">
+                                <img :src="detail.foto" alt="" class="max-h-[40%] shadow-lg relative">
+                                <p>Tanggal : {{ detail.tanggal }}</p>
+                                <p class="">Absen Masuk : {{ detail.absen_masuk == null ? "-" : detail.absen_masuk }}</p>
+                                <p class="">Absen Keluar : {{ detail.absen_keluar == null ? "-" : detail.absen_keluar }}</p>
+                                <p>Status Absen Pulang : {{ detail.status_absen_pulang == null ? "-" : detail.status_absen_pulang }}</p>
+                                <p>Status : {{ detail.status }}</p>
+                            </div>
+                        </Modal>
                     </div>
 
                 </div>
@@ -97,6 +97,7 @@ import Modal from '@/components/Modal.vue';
 import Navbar from '@/components/Navbar.vue';
 import SideBar from '@/components/SideBar.vue';
 import TableNavigation from '@/components/TableNavigation.vue';
+import { useTahunStore } from '@/stores/tahun';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/vue/20/solid";
 import axios from 'axios';
@@ -111,7 +112,9 @@ export default {
             isOpen: [],
             selectedOption: null,
             options: [],
-            modalOpen: false
+            detail : {},
+            modalOpen: false,
+            tahunStore: useTahunStore()
         }
     },
     methods: {
@@ -119,13 +122,14 @@ export default {
             this.siswa = data
         },
         openModal(siswaid,index) {
-            axios.get("http://localhost:2008/admin/findAllAbsen/" + siswaid, { withCredentials: true })
+            axios.get("http://localhost:2008/admin/findAbsenBySiswa/" + siswaid, { withCredentials: true })
                 .then((r) => {
-                    this.options.foto = r.data.data[index].foto
-                    this.options.tanggal = r.data.data[index].tanggal
-                    this.options.status = r.data.data[index].status
-                    this.options.absen_masuk = r.data.data[index].absen_masuk
-                    this.options.absen_keluar = r.data.data[index].absen_keluar
+                    console.log(r.data.data[index]);
+                    this.detail.foto = r.data.data[index].foto
+                    this.detail.tanggal = r.data.data[index].tanggal
+                    this.detail.status = r.data.data[index].status
+                    this.detail.absen_masuk = r.data.data[index].absen_masuk
+                    this.detail.absen_keluar = r.data.data[index].absen_keluar
                 })
             this.modalOpen = true
             // window.location.href = "/datasiswa"
@@ -141,19 +145,21 @@ export default {
             }
             this.isOpen[index] = !this.isOpen[index];
             if (this.isOpen[index] == true) {
-                axios.get("http://localhost:2008/admin/findAllAbsen/" + siswaid, { withCredentials: true })
+                axios.get("http://localhost:2008/admin/findAbsenBySiswa/" + siswaid, { withCredentials: true })
                     .then((r) => {
+                        console.log(r.data.data);
                         this.options = r.data.data
                     })
+                console.log(this.options);
             }
             this.siswaid = siswaid
         },
     },
     mounted() {
-        axios.get("http://localhost:2008/admin/findAllSiswa", { withCredentials: true })
+        axios.get(`http://localhost:2008/admin/findAllSiswa?page=1&tahun=${this.tahunStore.tahun}`, { withCredentials: true })
             .then((r) => {
                 console.log(r.data.data);
-                this.setSiswa(r.data.data)
+                this.setSiswa(r.data.data.siswa)
 
             })
     }

@@ -3,7 +3,7 @@
         <Navbar/>
         <div class="flex">
             <SideBar/>
-            <Banner>Detail Data Siswa {{  dudies.nama_instansi_perusahaan }}</Banner>
+            <Banner>Detail Data {{  dudies.nama_instansi_perusahaan }}</Banner>
             <div class="flex flex-col mt-52 mb-10 w-[100%] mx-20 ml-80 bg-white shadow-md p-24 relative">
                 <div class="flex flex-row gap-10 ">
                     <p class="w-[30%] text-right font-medium text-lg text-nowrap">Nama : </p>
@@ -83,9 +83,11 @@ export default {
   methods: {
     setDudies(data) {
       this.dudies = data
+    //   console.log(this.dudies);
       this.alamat = data.alamat
       this.jurusan = data.jurusan.nama
       this.kelas = data.kelas.nama
+      console.log(this.dudies);
     },
     editData(){
         console.log(this.dudies.id);
@@ -96,7 +98,9 @@ export default {
   },
   mounted() {
     axios.get('http://localhost:2008/admin/findSiswa/' + this.$route.params.id,{withCredentials : true})
-      .then((r) => this.setDudies(r.data.data))
+      .then((r) => {
+      console.log(r.data.data)
+      this.setDudies(r.data.data)})
   }
 }
 </script>

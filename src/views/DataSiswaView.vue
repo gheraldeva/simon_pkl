@@ -11,7 +11,7 @@ import Pagination from "@/components/Pagination.vue"
 </script>
 
 <template>
-  <div class="bg-bgcolor overflow-x-clip">
+  <div class="w-[130%] bg-bgcolor">
     <Navbar @navulang="gantiTahun" />
     <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
       tag="button"><img src="../assets/+.svg" alt=""></router-link>
@@ -158,6 +158,7 @@ export default {
     //   }
     // })
     //   .then((r) => console.log(r))
+    
 
   },
   

@@ -65,6 +65,8 @@
               </div>
             </div>
           </div>
+
+          <Pagination class="mt-10" :count-page="countPage" @ambil-page="gantiPage" />
         </div>
       </div>
     </div>
@@ -80,30 +82,46 @@ import TambahData from "@/components/TambahData.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
 import ActionButtonPembimbingDudi from "@/components/ActionButtonPembimbingDudi.vue";
 import { useTahunStore } from "@/stores/tahun";
+import Pagination from "@/components/Pagination.vue";
 
 
 export default {
   name : 'datadudi',
-  components : {Navbar,SideBar,ActionButtonPembimbingDudi,Banner,TambahData,TableNavigation},
+  components : {Navbar,SideBar,ActionButtonPembimbingDudi,Banner,TambahData,TableNavigation,Pagination},
   data() {
     return {
-      dudies: [],
-      tahunStore: useTahunStore()
+      dudies: {},
+      tahunStore: useTahunStore(),
+      countPage:'',
+      pageNow:''
     }
   },
   methods: {
+    gantiPage(i){
+      console.log(i);
+      axios.get(`http://localhost:2008/admin/findAllPembimbingDudi?page=${i}&tahun=${this.tahunStore.tahun}`,{withCredentials : true})
+      .then((r) => {
+        console.log(r.data.data.guruPembimbing);
+        this.setGuru(r.data.data.guruPembimbing)
+      })
+      this.pageNow = i
+    },
     setDudies(data) {
       this.dudies = data
       console.log(this.dudies);
     },
     gantiTahun(){
       axios.get(`http://localhost:2008/admin/findAllPembimbingDudi?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
-      .then((r) => this.setDudies(r.data.data))
+      .then((r) => this.setDudies(r.data.data.pembimbingDudi))
     }
   },
   mounted() {
     axios.get(`http://localhost:2008/admin/findAllPembimbingDudi?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
-      .then((r) => this.setDudies(r.data.data))
+      .then((r) => {
+          this.setDudies(r.data.data.pembimbingDudi)
+          this.countPage = r.data.data.countPage
+        }
+      )
   }
 }
 

@@ -3,8 +3,8 @@
         <div class="w-[100%] absolute h-[100%] flex justify-center items-center">
             <div class="w-[40vw] h-[50vh] bg-white rounded-lg absolute flex flex-col justify-between">
                 <slot />
-                <div class="w-[100%] flex justify-center">
-                    <button type="button" @click="$emit('close')" class="w-20 relative top-8 rounded-md text-black font-semibold bg-white z-50">Close</button>
+                <div class="flex justify-center">
+                    <button type="button" @click="$emit('close')" class="w-20 relative rounded-md text-black font-semibold bg-white z-50">Close</button>
                 </div>
             </div>
         </div>

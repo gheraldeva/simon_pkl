@@ -74,12 +74,14 @@ export default {
   methods: {
     setSiswa(data) {
       this.siswa = data
-      console.log(this.siswa);
+      //console.log(this.siswa);
     }
   },
   mounted() {
     axios.get(`http://localhost:2008/admin/findAllJurusan?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
-      .then((r) => this.setSiswa(r.data.data))
+      .then((r) => {
+      console.log(r.data.data)
+      this.setSiswa(r.data.data)})
   }
 }
 

@@ -3,7 +3,7 @@
         <Navbar />
         <div class="flex">
             <SideBar />
-            <Banner>Tambah Data Siswa</Banner>
+            <Banner>Tambah Data DU/DI</Banner>
             <div class="flex flex-col min-w-[75vw] mt-52 mb-10 mx-10 ml-80 bg-white shadow-md px-8 pt-8 pb-18 relative">
                 <h1 class="font-semibold text-xl pl-5 mb-5">Tambah Data</h1>
                 <hr class="border-t-2" />
@@ -152,6 +152,7 @@ import {
     helpers,
 } from "@vuelidate/validators";
 import { reactive, computed, toRef } from "vue";
+import { useTahunStore } from "@/stores/tahun";
 
 export default {
     name: "tambahdatadudi",
@@ -163,6 +164,7 @@ export default {
                 no_telepon: '',
                 bidang: '',
                 deskripsi: '',
+                id_tahun : useTahunStore().tahun
             },
         });
         const alamatState = reactive({
