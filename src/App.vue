@@ -5,12 +5,23 @@
 <script>
 import axios from 'axios';
 import { RouterLink, RouterView } from 'vue-router'
+import { useTahunStore } from './stores/tahun';
 
 export default {
+  data(){
+    return{
+      tahunStore : useTahunStore()
+    }
+  },
   beforeCreate(){
     axios.get("http://localhost:2008/admin/cekToken", { withCredentials: true })
-      .then((r) => {
-        console.log(r.data)
+      .then(async (r) => {
+        const tahun = await axios({
+          method : 'get',
+          url : "http://localhost:2008/admin/getAllTahun",
+          withCredentials : true
+        })
+        this.tahunStore.ubahTahun(tahun.data.data[0].id)
       })
       .catch((err) => {
         if (err.response.status == 401) {

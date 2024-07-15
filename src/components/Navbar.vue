@@ -98,12 +98,16 @@ export default {
       this.tahunStore.ubahTahun(this.now_tahun)
       this.now_tahun = this.tahunStore.tahun
       this.$emit('navulang')
+      
     }
   },
   mounted(){
     this.now_tahun = this.tahunStore.tahun
+    console.log(this.tahunStore.tahun);
     axios.get("http://localhost:2008/admin/getAllTahun", {withCredentials:true})
-      .then((r) => this.tahun = r.data.data)
+      .then((r) => {
+        this.tahun = r.data.data
+      })
   },
 
 

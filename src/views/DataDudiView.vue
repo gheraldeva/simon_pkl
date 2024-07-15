@@ -5,7 +5,7 @@
       tag="button"><img src="../assets/+.svg" alt=""></router-link>
     <div class="flex">
       <SideBar />
-      <Banner>Data Dudi Pembimbing</Banner>
+      <Banner>Data Dudi</Banner>
       <div class="tabel">
         <div class="flex flex-col mt-52 mb-10 mx-20 ml-80 bg-white shadow-md p-24 relative">
           <div class="-m-5">
@@ -65,6 +65,8 @@
               </div>
             </div>
           </div>
+          <Pagination class="mt-10" :count-page="countPage" @ambil-page="gantiPage" />
+
         </div>
       </div>
     </div>
@@ -80,21 +82,33 @@ import Banner from "@/components/Banner.vue";
 import TambahData from "@/components/TambahData.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
 import { useTahunStore } from "@/stores/tahun";
+import Pagination from "@/components/Pagination.vue";
 
 
 export default {
   name : 'datadudi',
-  components : {Navbar,SideBar,ActionButtonDudi,Banner,TambahData,TableNavigation},
+  components : {Navbar,SideBar,ActionButtonDudi,Banner,TambahData,TableNavigation,Pagination},
   data() {
     return {
       dudies: [],
-      tahunStore: useTahunStore()
+      tahunStore: useTahunStore(),
+      pageNow: '',
+      countPage:''
     }
   },
   methods: {
     setDudies(data) {
       this.dudies = data
       console.log(this.dudies);
+    },
+    gantiPage(i){
+      console.log(i);
+      axios.get(`http://localhost:2008/admin/findAllDudi?page=${i}&tahun=${this.tahunStore.tahun}`,{withCredentials : true})
+      .then((r) => {
+        console.log(r.data.data);
+        this.setDudies(r.data.data)
+      })
+      this.pageNow = i
     },
     gantiTahun(){
       axios.get(`http://localhost:2008/admin/findAllDudi?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
@@ -103,7 +117,11 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:2008/admin/findAllDudi?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials:true})
-      .then((r) => this.setDudies(r.data.data))
+      .then((r) => {
+        console.log(r.data.data);
+        this.setDudies(r.data.data)
+        this.countPage = r.data.data.countPage
+      })
   }
 }
 

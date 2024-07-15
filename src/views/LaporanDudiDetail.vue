@@ -8,13 +8,13 @@
                 <div class="flex flex-col mt-52 mb-10 mx-20 ml-92 w-[70vw] bg-white shadow-md pt-24 pb-48 px-16 relative">
                     <h1 class="text-xl font-semibold my-3">Laporan Siswa : {{ siswa }}</h1>
                     <p class="text-lg font-semibold my-1">Topik Pekerjaan : {{ laporan.topik_pekerjaan }}</p>
-                    <img v-show="filetipe == 'jpg'" :src="laporan.dokumentasi" alt="">
-                    <img v-show="filetipe == 'jpeg'" :src="laporan.dokumentasi" alt="">
-                    <img v-show="filetipe == 'png'" :src="laporan.dokumentasi" alt="">
-                    <embed v-show="filetipe == 'pdf'" :src="laporan.dokumentasi" type="application/pdf" class="border-none shadow-md" width="100%" height="900vh">
+                    <img v-show="filetipe == 'jpg'" :src="laporan.file_laporan" alt="">
+                    <img v-show="filetipe == 'jpeg'" :src="laporan.file_laporan" alt="">
+                    <img v-show="filetipe == 'png'" :src="laporan.file_laporan" alt="">
+                    <embed v-show="filetipe == 'pdf'" :src="laporan.file_laporan" type="application/pdf" class="border-none shadow-md" width="100%" height="900vh">
                     <div class="flex gap-2 mt-10 justify-center">
                         <button class=" bg-white border-left-linear border-2 w-24 h-12 rounded-sm hover:bg-left-linear hover:text-white" @click="backToLaporan">Kembali</button>
-                        <a @click.prevent="downloadFile" class=" bg-left-linear cursor-pointer rounded-sm flex justify-center items-center w-[140px]">Download File</a>
+                        <a @click.prevent="downloadFile" class=" bg-left-linear cursor-pointer rounded-sm flex justify-center items-center w-[140px] hover:text-white hover:bg-right-linear">Download File</a>
                         <a @click="lihatFile" class="cursor-pointer bg-left-linear rounded-sm flex justify-center items-center w-20">Lihat</a>
                     </div>
                 </div>

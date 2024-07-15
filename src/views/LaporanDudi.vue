@@ -3,7 +3,7 @@
     <Navbar />
     <div class="flex">
       <SideBar />
-      <Banner>Laporan PKL Siswa</Banner>
+      <Banner>Laporan PKL DU/DI</Banner>
       <div class="tabel">
         <div class="flex flex-col mt-52 mb-10 mx-20 ml-92 w-[70vw] bg-white shadow-md pt-24 pb-48 px-16 relative">
           <div class="-m-5">
@@ -46,12 +46,14 @@ import Banner from "@/components/Banner.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
 import axios from "axios";
 import FolderIcon from "@/components/icons/FolderIcon.vue";
+import { useTahunStore } from "@/stores/tahun";
 export default {
   name: 'LaporanDudi',
   components: { Navbar, SideBar, Banner, TableNavigation, FolderIcon },
   data() {
     return {
-      laporanPkl: []
+      laporanPkl: [],
+      tahunStore : useTahunStore()
     }
   },
   methods: {
@@ -67,8 +69,10 @@ export default {
 
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllLaporanPkl', { withCredentials: true })
-      .then((r) => this.setLaporan(r.data.data))
+    axios.get(`http://localhost:2008/admin/findAllLaporanPkl?tahun=${this.tahunStore.tahun}&page=1`, { withCredentials: true })
+      .then((r) => {this.setLaporan(r.data.data.laporan)
+        console.log(r.data.data.laporan);
+      })
   }
 }
 </script>

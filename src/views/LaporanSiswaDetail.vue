@@ -14,7 +14,7 @@
                     <embed v-show="filetipe == 'pdf'" :src="laporan.dokumentasi" type="application/pdf" class="border-none shadow-md" width="100%" height="900vh">
                     <div class="flex gap-2 mt-10 justify-center">
                         <button class=" bg-white border-left-linear border-2 w-24 h-12 rounded-sm hover:bg-left-linear hover:text-white" @click="backToLaporan">Kembali</button>
-                        <a @click.prevent="downloadFile" class=" bg-left-linear cursor-pointer rounded-sm flex justify-center items-center w-[140px]">Download File</a>
+                        <a @click.prevent="downloadFile" class=" bg-left-linear cursor-pointer rounded-sm flex justify-center items-center w-[140px] hover:text-white hover:bg-right-linear">Download File</a>
                         <a @click="lihatFile" class="cursor-pointer bg-left-linear rounded-sm flex justify-center items-center w-20">Lihat</a>
                     </div>
                 </div>

@@ -47,12 +47,14 @@ import Banner from "@/components/Banner.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
 import axios from "axios";
 import FolderIcon from "@/components/icons/FolderIcon.vue";
+import { useTahunStore } from "@/stores/tahun";
 export default {
   name: 'LaporanSiswa',
   components: { Navbar, SideBar, Banner, TableNavigation, FolderIcon },
   data() {
     return {
-      laporanPkl: []
+      laporanPkl: [],
+      tahunStore: useTahunStore()
     }
   },
   methods: {
@@ -68,8 +70,8 @@ export default {
 
   },
   mounted() {
-    axios.get('http://localhost:2008/admin/findAllLaporanPklSiswa', { withCredentials: true })
-      .then((r) => this.setLaporan(r.data.data))
+    axios.get(`http://localhost:2008/admin/findAllLaporanPklSiswa?tahun=${this.tahunStore.tahun}&page=1`, { withCredentials: true })
+      .then((r) => this.setLaporan(r.data.data.laporan))
   }
 }
 </script>

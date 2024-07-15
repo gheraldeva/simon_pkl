@@ -1,3 +1,6 @@
+
+
+
 <template>
   <div class="bg-bgcolor overflow-x-clip">
     <Navbar @navulang="gantiTahun" />
@@ -58,7 +61,9 @@
                 </table>
               </div>
             </div>
+            <Pagination class="mt-10" :count-page="countPage" @ambil-page="gantiPage" />
           </div>
+
         </div>
       </div>
     </div>
@@ -73,18 +78,30 @@ import ActionButtonGuru from "@/components/ActionButtonGuru.vue";
 import Banner from "@/components/Banner.vue";
 import TableNavigation from "@/components/TableNavigation.vue";
 import { useTahunStore } from "@/stores/tahun";
+import Pagination from "@/components/Pagination.vue";
 
 
 export default {
   name: 'dataguru',
-  components: {Navbar,SideBar,ActionButtonGuru,Banner,TableNavigation},
+  components: {Navbar,SideBar,ActionButtonGuru,Banner,TableNavigation,Pagination},
   data() {
     return {
       guru: [],
-      tahunStore: useTahunStore()
+      tahunStore: useTahunStore(),
+      countPage: '',
+      pageNow:''
     }
   },
   methods: {
+    gantiPage(i){
+      console.log(i);
+      axios.get(`http://localhost:2008/admin/findAllGuruPembimbing?page=${i}&tahun=${this.tahunStore.tahun}`,{withCredentials : true})
+      .then((r) => {
+        console.log(r.data.data.guruPembimbing);
+        this.setGuru(r.data.data.guruPembimbing)
+      })
+      this.pageNow = i
+    },
     setGuru(data){
       
       this.guru = data
@@ -97,7 +114,10 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:2008/admin/findAllGuruPembimbing?page=1&tahun=${this.tahunStore.tahun}`,{withCredentials: true})
-      .then((r) => this.setGuru(r.data.data.guruPembimbing))
+      .then((r) => {
+        this.setGuru(r.data.data.guruPembimbing)
+        this.countPage = r.data.data.countpage
+      })
     }
 }
 

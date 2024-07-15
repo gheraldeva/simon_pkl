@@ -215,6 +215,7 @@ import axios from "axios";
 import useValidate from '@vuelidate/core'
 import { required, numeric, minLength, maxLength, helpers } from '@vuelidate/validators'
 import { reactive, computed, toRef } from "vue";
+import { useTahunStore } from "@/stores/tahun";
 
 export default {
     name: "tambahdataguru",
@@ -230,6 +231,7 @@ export default {
                 tanggal_lahir: '',                
                 password: '',
                 no_telepon: '',
+                id_tahun: ''
             }
 
         })
@@ -315,7 +317,8 @@ export default {
                     desa: '',
                     negara: 'Indonesia'
                 }
-            }
+            },
+            tahunStore: useTahunStore()
 
         }
     },
@@ -327,6 +330,8 @@ export default {
                 this.alamatState.alamat.provinsi = this.alamatState.alamat.provinsi.nama
                 this.alamatState.alamat.kabupaten = this.alamatState.alamat.kabupaten.nama
                 this.alamatState.alamat.kecamatan = this.alamatState.alamat.kecamatan.nama
+                this.Gurustate.dataguru.id_tahun = this.tahunStore.tahun
+                this.Gurustate.dataguru.nip = `${this.Gurustate.dataguru.nip}`
 
                 axios({
                     method:'post',
