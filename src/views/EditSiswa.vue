@@ -323,6 +323,7 @@ export default {
             })
         axios.get(`http://localhost:2008/admin/findAllJurusan?tahun=${this.tahunStore.tahun}`,{withCredentials:true})
             .then((r)=> {
+                console.log(r.data.data);
                  this.getJurusan(r.data.data)
                 })
         console.log(this.siswaState);

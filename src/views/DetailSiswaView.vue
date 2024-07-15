@@ -98,9 +98,7 @@ export default {
   },
   mounted() {
     axios.get('http://localhost:2008/admin/findSiswa/' + this.$route.params.id,{withCredentials : true})
-      .then((r) => {
-      console.log(r.data.data)
-      this.setDudies(r.data.data)})
+      .then((r) => this.setDudies(r.data.data))
   }
 }
 </script>
