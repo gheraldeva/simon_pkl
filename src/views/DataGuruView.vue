@@ -20,7 +20,7 @@
               </TableNavigation>
 
 
-              <div class="overflow-hidden border-2 border-black">
+              <div class=" border-2 border-black">
                 <table class="min-w-full divide-y divide-black">
                   <thead>
                     <tr class="divide-x-2 divide-black text-sm">

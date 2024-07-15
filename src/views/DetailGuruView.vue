@@ -97,7 +97,8 @@ export default {
         console.log(this.dudies.id);
     },
     kembali(){
-        window.location.href = "/dataguru"
+        this.$router.push("/dataguru")
+        // window.location.reload()
     }
   },
   mounted() {
