@@ -6,11 +6,6 @@
             <Banner>Absen Siswa</Banner>
             <div class="flex flex-col mt-52 mb-10 mx-20 ml-80 bg-white shadow-md p-24">
                 <div class="p-1.5 min-w-full align-middle">
-                    <TableNavigation>
-                        <template #default-filter>
-                            Status: nama
-                        </template>
-                    </TableNavigation>
 
                     <div class="">
                         <div class=" " v-for="(siswa, index) in siswa" :key="index">
@@ -96,7 +91,6 @@ import Banner from '@/components/Banner.vue';
 import Modal from '@/components/Modal.vue';
 import Navbar from '@/components/Navbar.vue';
 import SideBar from '@/components/SideBar.vue';
-import TableNavigation from '@/components/TableNavigation.vue';
 import { useTahunStore } from '@/stores/tahun';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/vue/20/solid";
@@ -104,7 +98,7 @@ import axios from 'axios';
 
 export default {
     name: 'absensiswa',
-    components: { Navbar, SideBar, TableNavigation, Modal, Banner, Menu, MenuButton, MenuItem, MenuItems, ChevronDownIcon, ChevronRightIcon },
+    components: { Navbar, SideBar, Modal, Banner, Menu, MenuButton, MenuItem, MenuItems, ChevronDownIcon, ChevronRightIcon },
     data() {
         return {
             siswa: {},

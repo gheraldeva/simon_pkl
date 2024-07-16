@@ -10,11 +10,6 @@
         <div class="flex flex-col mt-52 mb-10 mx-20 ml-80 bg-white shadow-md p-24 relative">
           <div class="-m-5">
             <div class="p-1.5 min-w-full align-middle">
-              <TableNavigation>
-                <template #default-filter>
-                  Status: nama
-                </template>
-              </TableNavigation>
 
           
 
@@ -79,7 +74,6 @@ import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import Banner from "@/components/Banner.vue";
 import TambahData from "@/components/TambahData.vue";
-import TableNavigation from "@/components/TableNavigation.vue";
 import ActionButtonPembimbingDudi from "@/components/ActionButtonPembimbingDudi.vue";
 import { useTahunStore } from "@/stores/tahun";
 import Pagination from "@/components/Pagination.vue";
@@ -87,7 +81,7 @@ import Pagination from "@/components/Pagination.vue";
 
 export default {
   name : 'datadudi',
-  components : {Navbar,SideBar,ActionButtonPembimbingDudi,Banner,TambahData,TableNavigation,Pagination},
+  components : {Navbar,SideBar,ActionButtonPembimbingDudi,Banner,TambahData,Pagination},
   data() {
     return {
       dudies: {},

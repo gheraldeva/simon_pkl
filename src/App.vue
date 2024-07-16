@@ -1,6 +1,9 @@
 <template>
-  <RouterView />
+  <div class="container-app">
+    <RouterView />
+  </div>
 </template>
+
 
 <script>
 import axios from 'axios';

@@ -8,13 +8,6 @@
         <div class="flex flex-col mt-52 mb-10 mx-20 ml-92 w-[70vw] bg-white shadow-md pt-24 pb-48 px-16 relative">
           <div class="-m-5">
             <div class=" min-w-full align-middle">
-              <TableNavigation>
-                <template #default-filter>
-                  Status: Terpenuhi
-                </template>
-              </TableNavigation>
-
-
               <div class=" flex flex-row flex-wrap mx-20 justify-between gap-10 pt-10">
                 <div class="" v-for="(data, index) in laporanPkl">
                   <div class=" w-92 h-40 bg-[#38A3FF] rounded-md relative">
@@ -44,13 +37,12 @@
 import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import Banner from "@/components/Banner.vue";
-import TableNavigation from "@/components/TableNavigation.vue";
 import axios from "axios";
 import FolderIcon from "@/components/icons/FolderIcon.vue";
 import { useTahunStore } from "@/stores/tahun";
 export default {
   name: 'LaporanSiswa',
-  components: { Navbar, SideBar, Banner, TableNavigation, FolderIcon },
+  components: { Navbar, SideBar, Banner, FolderIcon },
   data() {
     return {
       laporanPkl: [],

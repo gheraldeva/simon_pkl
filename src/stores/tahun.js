@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 
 export const useTahunStore = defineStore('tahun', () => {
-  let tahun = ref('2558')
+  let tahun = ref('7667')
   
   function ubahTahun(id_tahun) {
     tahun.value = id_tahun

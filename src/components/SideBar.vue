@@ -3,7 +3,7 @@ import ArrowRight from "@/components/icons/ArrowRight.vue";
 import { RouterLink } from "vue-router";
 </script>
 <template>
-  <div class="w-64 h-[90vh] mt-[10vh] bg-card-color fixed z-20 text-white font-Montserrat pt-10">
+  <div class="w-[17.2vw] h-[90vh] lg:text-md sm:text-sm mt-[10vh] bg-card-color fixed z-20 text-white font-Montserrat pt-10">
     <div class="flex gap-3 px-6">
       <img src="../assets/profile_admin.svg" alt="" />
       <div>
@@ -16,7 +16,8 @@ import { RouterLink } from "vue-router";
       <div>
         <div class="flex gap-3">
           <img src="../assets/home.svg" alt="" />
-          <p class="font-semibold">Home</p>
+          <RouterLink to="/">Home</RouterLink>
+
         </div>
       </div>
 
@@ -77,10 +78,6 @@ import { RouterLink } from "vue-router";
               <RouterLink to="/absensiswa">Absen Siswa</RouterLink>
             </li>
             <hr />
-            <li>Laporan Siswa PKL</li>
-            <hr />
-            <li>Laporan PKL</li>
-            <hr />
           </ul>
         </transition>
       </div>
@@ -108,10 +105,6 @@ import { RouterLink } from "vue-router";
       </div>
       
 
-
-      <p class="absolute bottom-12 left-12 text-[0.5rem] font-semibold">
-        Copyright © BlackRoom Corp. 2024
-      </p>
     </div>
   </div>
 </template>

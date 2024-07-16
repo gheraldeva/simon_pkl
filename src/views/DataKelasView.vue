@@ -2,8 +2,7 @@
 import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import Banner from "@/components/Banner.vue";
-import ActionButtonJurusan from "@/components/ActionButtonJurusan.vue";
-import TableNavigation from "@/components/TableNavigation.vue";
+
 
 </script>
 
@@ -16,16 +15,11 @@ import TableNavigation from "@/components/TableNavigation.vue";
       <SideBar />
       <Banner>Data Kelas</Banner>
 
-      <div class="tabel relative">
+      <div class="tabel">
         <div class="flex flex-col mt-52 mb-10 mx-10 ml-80 bg-white shadow-md p-20 relative">
           <div class="-m-5 ">
             <h1 class="font-bold text-xl">Tahun 2024/2025</h1>
             <div class="p-1.5 min-w-full align-middle">
-              <TableNavigation>
-                <template #default-filter>
-                  Status: Terpenuhi
-                </template>
-              </TableNavigation>
               <div class="px-24">
                 <div class="border-2 relative border-black">
                   <table class="min-w-full divide-y divide-black">

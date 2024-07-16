@@ -13,11 +13,6 @@
         <div class="flex flex-col mt-52 mb-10 mx-10 ml-80 bg-white shadow-md p-24 relative">
           <div class="-m-5">
             <div class="p-1.5 min-w-full align-middle">
-              <TableNavigation>
-                <template #default-filter>
-                  Status: Terpenuhi
-                </template>
-              </TableNavigation>
 
 
               <div class=" border-2 border-black">
@@ -76,14 +71,13 @@ import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import ActionButtonGuru from "@/components/ActionButtonGuru.vue";
 import Banner from "@/components/Banner.vue";
-import TableNavigation from "@/components/TableNavigation.vue";
 import { useTahunStore } from "@/stores/tahun";
 import Pagination from "@/components/Pagination.vue";
 
 
 export default {
   name: 'dataguru',
-  components: {Navbar,SideBar,ActionButtonGuru,Banner,TableNavigation,Pagination},
+  components: {Navbar,SideBar,ActionButtonGuru,Banner,Pagination},
   data() {
     return {
       guru: [],

@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import Banner from "@/components/Banner.vue";
 import ActionButtonJurusan from "@/components/ActionButtonJurusan.vue";
-import TableNavigation from "@/components/TableNavigation.vue";
 
 </script>
 
@@ -20,11 +19,6 @@ import TableNavigation from "@/components/TableNavigation.vue";
         <div class="flex flex-col mt-52 mb-10 mx-10 ml-72 bg-white shadow-md p-32 relative">
           <div class="-m-5 ">
             <div class="p-1.5 min-w-full align-middle">
-              <TableNavigation>
-                <template #default-filter>
-                  Status: Terpenuhi
-                </template>
-              </TableNavigation>
 
               <div class="border-2 relative border-black">
                 <table class="min-w-full divide-y divide-black">

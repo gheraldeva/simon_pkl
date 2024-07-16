@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar.vue";
 import SideBar from "@/components/SideBar.vue";
 import Banner from "@/components/Banner.vue";
 import ActionButtonSiswa from "@/components/ActionButtonSiswa.vue";
-import TableNavigationSiswa from "@/components/TableNavigationSiswa.vue";
 import TrueIcon from "@/components/icons/TrueIcon.vue";
 import FalseIcon from "@/components/icons/FalseIcon.vue";
 import Pagination from "@/components/Pagination.vue"
@@ -11,7 +10,7 @@ import Pagination from "@/components/Pagination.vue"
 </script>
 
 <template>
-  <div class="w-[130%] bg-bgcolor">
+  <div class="w-max bg-bgcolor">
     <Navbar @navulang="gantiTahun" />
     <router-link to="/tambahdatasiswa" class="p-5 bg-[#38A3FF] rounded-full fixed right-10 bottom-10 z-50"
       tag="button"><img src="../assets/+.svg" alt=""></router-link>
@@ -20,11 +19,11 @@ import Pagination from "@/components/Pagination.vue"
       <Banner>Data Siswa</Banner>
 
       <div class="tabel">
-        <div class="flex flex-col mt-52 mb-10 mx-10 ml-72 bg-white shadow-md p-16 relative">
+        <div class="flex flex-col mt-52 mb-10 mx-10 ml-72 w-[90vw] bg-white shadow-md p-16 relative">
           <div class="-m-5">
             <div class="p-1.5 min-w-full align-middle">
 
-              <div class="border-2 border-black">
+              <div class="border-2 w-100% border-black">
                 <table class="min-w-full divide-y divide-black">
                   <thead>
                     <tr class="divide-x-2 divide-black text-sm">
